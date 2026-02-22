@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "../styles/theme.css";
+
+:root {
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  background: var(--cs-bg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--cs-text);
+}
+
+a {
+  color: var(--cs-link);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--cs-link-hover);
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cs-accent);
+  outline-offset: 2px;
+}
+
+@layer components {
+  .page-title,
+  h1.page-title,
+  h2.page-title {
+    @apply text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl;
+  }
+
+  .page-title--default {
+    @apply text-[var(--cs-primary)];
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .section-h1 {
+    @apply text-balance text-4xl font-bold leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl;
+    @apply text-[var(--cs-primary)];
+    -webkit-text-fill-color: currentColor;
+    padding-bottom: 0.08em;
+  }
+}
+
+.text-gradient-dark {
+  background-image: linear-gradient(180deg, var(--cs-primary) 0%, var(--cs-primary-2) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.cs-button-primary {
+  background: var(--cs-primary);
+  color: var(--cs-text-inverse);
+}
+
+.cs-button-primary:hover {
+  background: var(--cs-primary-2);
+}
+
+.cs-button-secondary {
+  background: transparent;
+  color: var(--cs-primary);
+  border: 1px solid var(--cs-primary);
+}
+
+.cs-button-secondary:hover {
+  background: color-mix(in srgb, var(--cs-accent-2) 22%, transparent);
+}
+
+.complianceBox h3,
+.complianceBox p {
+  margin: 0;
+}

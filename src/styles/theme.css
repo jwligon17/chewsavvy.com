@@ -1,0 +1,22 @@
+:root {
+  color-scheme: light;
+
+  --cs-bg: #F8F9F9;
+  --cs-surface: #FFFFFF;
+  --cs-primary: #101536;
+  --cs-primary-2: #2C3F5D;
+  --cs-primary-3: #274255;
+  --cs-accent: #E2C793;
+  --cs-accent-2: #C0D8E0;
+  --cs-muted: #547791;
+
+  --cs-text: var(--cs-primary);
+  --cs-text-inverse: var(--cs-bg);
+  --cs-border: color-mix(in srgb, var(--cs-primary) 18%, var(--cs-surface));
+  --cs-shadow: color-mix(in srgb, var(--cs-primary) 18%, transparent);
+  --cs-link: var(--cs-primary-2);
+  --cs-link-hover: var(--cs-primary);
+
+  --background: var(--cs-bg);
+  --foreground: var(--cs-text);
+}

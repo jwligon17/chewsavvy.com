@@ -1,0 +1,34 @@
+import Link from "next/link";
+
+import { Card } from "@/components/ui/Card";
+
+type ModuleCardsProps = {
+  cards: {
+    title: string;
+    description: string;
+    href: string;
+  }[];
+  linkLabel: string;
+};
+
+export function ModuleCards({ cards, linkLabel }: ModuleCardsProps) {
+  return (
+    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {cards.map((card) => (
+        <Card key={card.title} className="flex h-full flex-col justify-between">
+          <div>
+            <h3 className="text-xl font-bold text-[var(--cs-primary)]">{card.title}</h3>
+            <p className="mt-3 text-sm text-[var(--cs-muted)]">{card.description}</p>
+          </div>
+          <Link
+            href={card.href}
+            className="mt-6 inline-flex text-sm font-bold text-[var(--cs-primary)] underline decoration-[var(--cs-accent)] underline-offset-4 transition hover:decoration-[var(--cs-primary)]"
+          >
+            {linkLabel}
+          </Link>
+        </Card>
+      ))}
+    </div>
+  );
+}
+
