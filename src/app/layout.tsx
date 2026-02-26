@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
@@ -13,10 +13,6 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chewsavvy.com"),
-  themeColor: "#F8F9F9",
-  other: {
-    "color-scheme": "light",
-  },
   title: {
     default: "Chewsavvy | Consumer Savings, Deals, and Weekly Leaderboards",
     template: "%s | Chewsavvy",
@@ -56,14 +52,19 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#F8F9F9",
+  colorScheme: "light",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${poppins.className}`}>
-      <body className="min-h-screen bg-[var(--cs-bg)] text-[var(--cs-text)] antialiased font-sans">
+    <html lang="en" className={`${poppins.variable} ${poppins.className} overflow-x-hidden`}>
+      <body className="min-h-screen overflow-x-hidden bg-[var(--cs-bg)] text-[var(--cs-text)] antialiased font-sans">
         <a
           href="#main-content"
           className="sr-only rounded-md bg-[var(--cs-primary)] px-3 py-2 text-sm font-bold text-[var(--cs-text-inverse)] focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50"

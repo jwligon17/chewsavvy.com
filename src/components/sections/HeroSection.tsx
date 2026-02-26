@@ -1,77 +1,103 @@
-"use client";
-
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { Container } from "@/components/ui/Container";
-import type { ChewsavvyContent } from "@/content/chewsavvy";
+import Link from "next/link";
 
-type HeroSectionProps = {
-  hero: ChewsavvyContent["homePage"]["hero"];
-};
-
-export function HeroSection({ hero }: HeroSectionProps) {
+export function HeroSection() {
   return (
-    <section
-      className="relative overflow-x-hidden border-b border-[var(--cs-border)] bg-[var(--cs-surface)] pt-12 pb-12 sm:pt-14 sm:pb-14 lg:overflow-visible lg:pt-16 lg:pb-16"
-    >
+    <section className="relative overflow-x-hidden overflow-y-visible bg-[#0B0B0D] pb-12 pt-4 sm:pb-14 sm:pt-6 lg:pb-16 lg:pt-7">
       <div
-        className="pointer-events-none absolute top-1/2 right-8 hidden h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-gradient-to-r from-[var(--cs-accent-2)] via-[var(--cs-bg)] to-[var(--cs-accent)] opacity-20 blur-lg lg:block"
+        className="pointer-events-none absolute left-[30%] top-[56%] -z-20 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.07] blur-[96px] sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]"
+        style={{ background: "radial-gradient(circle, rgba(97,172,62,0.22) 0%, rgba(11,11,13,0) 72%)" }}
         aria-hidden
       />
-      <Container className="relative">
-        <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-2 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:translate-x-10 xl:translate-x-12">
-          <div className="mb-6 max-w-xl lg:mb-0 lg:max-w-2xl">
-            <h1 className="text-shadow-soft text-balance text-[clamp(2.4rem,9vw,3.0rem)] font-bold leading-[1.05] tracking-tight sm:text-5xl lg:text-7xl">
-              <span className="whitespace-nowrap text-[#101536] supports-[background-clip:text]:bg-gradient-to-r supports-[background-clip:text]:from-[#547791] supports-[background-clip:text]:to-[#C0D8E0] supports-[background-clip:text]:bg-clip-text supports-[background-clip:text]:text-transparent">
-                {hero.headline}
-              </span>
-            </h1>
-            {hero.supportingLine ? (
-              <p className="mt-5 max-w-[58ch] text-pretty text-base leading-[1.72] text-[var(--cs-primary-2)] sm:text-lg sm:leading-[1.72] lg:text-xl lg:leading-[1.68]">
-                {hero.supportingLine}
-              </p>
-            ) : null}
-
-            <ul className="mt-5 max-w-[60ch] list-disc space-y-3 pl-5 text-sm leading-[1.65] text-[var(--cs-primary-2)] marker:text-[var(--cs-primary)] marker:font-semibold sm:text-base">
-              {hero.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
-
-            <div id="download" className="mt-7 flex flex-wrap gap-3 lg:mt-8">
-              <Button
-                href={hero.primaryCta.href}
-                size="lg"
-                variant="ink"
-                className="!text-[#FFFFFF] hover:!text-[#FFFFFF] focus-visible:!text-[#FFFFFF] visited:!text-[#FFFFFF] no-underline hover:no-underline"
-              >
-                {hero.primaryCta.label}
-              </Button>
-            </div>
-            <a
-              href="#how-it-works"
-              className="mt-3 inline-flex text-sm font-semibold text-[var(--cs-link)] transition hover:text-[var(--cs-link-hover)] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--cs-accent)]"
-            >
-              See how it works
-            </a>
-          </div>
-
-          <div className="relative mx-auto mt-2 w-full max-w-xl overflow-visible sm:mt-4 lg:mt-0">
+      <div
+        className="pointer-events-none absolute right-[24%] top-[34%] -z-20 h-[280px] w-[280px] translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.06] blur-[92px] sm:h-[300px] sm:w-[300px] lg:h-[320px] lg:w-[320px]"
+        style={{ background: "radial-gradient(circle, rgba(227,203,135,0.2) 0%, rgba(11,11,13,0) 74%)" }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 -z-30"
+        style={{ background: "radial-gradient(120% 90% at 50% 42%, rgba(28,28,31,0.16) 0%, rgba(11,11,13,0) 52%, rgba(0,0,0,0.2) 100%)" }}
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{ background: "radial-gradient(130% 115% at 50% 42%, rgba(11,11,13,0) 50%, rgba(0,0,0,0.2) 78%, rgba(0,0,0,0.34) 100%)" }}
+        aria-hidden
+      />
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 sm:gap-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-14 lg:px-8">
+        <div className="relative mx-auto min-w-0 w-full max-w-[420px] overflow-hidden sm:max-w-[520px] lg:ml-auto lg:mr-0 lg:max-w-[560px]">
+          <div
+            className="pointer-events-none absolute left-[38%] top-[58%] -z-20 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(97,172,62,0.08)] blur-[82px] sm:h-[210px] sm:w-[210px] lg:h-[240px] lg:w-[240px]"
+            aria-hidden
+          />
+          <div className="relative">
             <div
-              className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-l from-[var(--cs-accent)] via-transparent to-[var(--cs-accent-2)] opacity-20 blur-lg sm:h-[260px] sm:w-[260px] lg:h-[320px] lg:w-[320px]"
+              className="pointer-events-none absolute left-[44%] top-[46%] -z-10 h-[520px] w-[340px] -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] rounded-[32px] border-[18px] border-white bg-transparent shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:h-[600px] sm:w-[390px] lg:left-[42%] lg:top-[44%] lg:h-[620px] lg:w-[400px]"
               aria-hidden
             />
             <Image
               src="/csphone.png"
-              alt="Chewsavvy app deal feed preview"
-              width={2944}
-              height={6400}
-              sizes="(max-width: 768px) 90vw, 352px"
-              className="mx-auto block h-auto w-full max-w-[20rem] sm:max-w-[22rem]"
+              alt="Chewsavvy app preview on phone"
+              width={4688}
+              height={4688}
+              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 72vw, 52vw"
+              unoptimized
+              draggable={false}
+              className="pointer-events-none select-none relative z-10 mx-auto block w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
+              priority
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 top-[-20px] z-20 h-[220px] bg-gradient-to-b from-[#0B0B0D]/85 via-[#0B0B0D]/35 to-transparent"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-[-60px] h-[340px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/90 to-transparent"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[240px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/85 to-transparent"
+              aria-hidden
             />
           </div>
         </div>
-      </Container>
+
+        <div className="relative z-20 w-full">
+          <div className="relative z-20 ml-auto w-full max-w-[560px] text-right lg:pr-0">
+            <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
+              <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
+                Your seat at the
+              </span>
+              <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
+                table is waiting.
+              </span>
+              <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
+                Stay exclusive.
+              </span>
+            </h1>
+
+            <p className="ml-auto mt-6 text-right text-[1.05rem] leading-relaxed text-white/80 sm:text-[1.1rem]">
+              The best dining experiences are reserved for those who know where to look.
+            </p>
+
+            <p className="ml-auto mt-6 text-right text-[0.95rem] leading-relaxed text-white/55 sm:text-[1rem]">
+              Chewsavvy curates the exceptional deals that others miss, separating the diamond from the rough. Using
+              anything else isn&apos;t just a choice&mdash;it&apos;s a disservice to your taste and your time.
+            </p>
+            <p className="ml-auto mt-6 text-right text-base font-bold text-white sm:text-[1.02rem]">
+              Join those who refuse to settle.
+            </p>
+
+            <div className="mt-6 flex justify-end sm:mt-6">
+              <Link
+                href="#download"
+                className="inline-flex min-h-[48px] items-center rounded-xl bg-white px-7 py-3 text-[0.95rem] font-semibold text-[#0B0B0D] shadow-[0_10px_24px_rgba(0,0,0,0.35)] transition-all duration-200 hover:bg-white/95"
+              >
+                Download Our App
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

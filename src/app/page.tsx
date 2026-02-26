@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 
-import { CoreCapabilitiesSection } from "@/components/sections/CoreCapabilitiesSection";
-import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
+import { FeaturesStatementSection } from "@/components/sections/FeaturesStatementSection";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
-import { WhatYouGetSection } from "@/components/sections/WhatYouGetSection";
-import { chewsavvyContent } from "@/content/chewsavvy";
+import { MadeForSection } from "@/components/sections/MadeForSection";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -14,15 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const { homePage } = chewsavvyContent;
-
   return (
     <>
-      <HeroSection hero={homePage.hero} />
-      <HowItWorksSection />
-      <WhatYouGetSection whatYouGet={homePage.whatYouGet} />
-      <CoreCapabilitiesSection coreCapabilities={homePage.coreCapabilities} />
-      <FinalCtaSection finalCta={homePage.finalCTA} />
+      <HeroSection />
+      <MadeForSection />
+      <FeaturesStatementSection />
     </>
   );
 }

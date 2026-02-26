@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent as ReactKeyboardEvent } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import { createPortal } from "react-dom";
 
 import { chewsavvyContent } from "@/content/chewsavvy";
@@ -29,7 +31,10 @@ function getNavHref(item: MainNavItem) {
 }
 
 export function Header({ content = chewsavvyContent }: HeaderProps) {
+  const pathname = usePathname();
+  const isHomeDark = pathname === "/" || pathname === "/made-for" || pathname.startsWith("/made-for/");
   const desktopNav = useMemo(() => content.mainNav, [content.mainNav]);
+  const [isMadeForOpen, setIsMadeForOpen] = useState(false);
   const [openDesktopIndex, setOpenDesktopIndex] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMobileIndex, setOpenMobileIndex] = useState<number | null>(null);
@@ -40,6 +45,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const panelId = useId();
+  const madeForPanelId = useId();
 
   useEffect(() => {
     function onPointerDown(event: PointerEvent) {
@@ -54,6 +60,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
 
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
+        setIsMadeForOpen(false);
         setOpenDesktopIndex((current) => {
           if (current !== null) triggerRefs.current[current]?.focus();
           return null;
@@ -87,7 +94,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   }, [openDesktopIndex]);
 
   useEffect(() => {
-    if (mobileOpen) {
+    if (mobileOpen || isMadeForOpen) {
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = "";
@@ -98,7 +105,50 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [mobileOpen]);
+  }, [mobileOpen, isMadeForOpen]);
+
+  useEffect(() => {
+    function onLocationChange() {
+      setIsMadeForOpen(false);
+    }
+
+    const historyRef = window.history;
+    const originalPushState = historyRef.pushState;
+    const originalReplaceState = historyRef.replaceState;
+
+    historyRef.pushState = function pushState(...args) {
+      originalPushState.apply(this, args);
+      onLocationChange();
+    };
+
+    historyRef.replaceState = function replaceState(...args) {
+      originalReplaceState.apply(this, args);
+      onLocationChange();
+    };
+
+    window.addEventListener("popstate", onLocationChange);
+    window.addEventListener("hashchange", onLocationChange);
+    return () => {
+      historyRef.pushState = originalPushState;
+      historyRef.replaceState = originalReplaceState;
+      window.removeEventListener("popstate", onLocationChange);
+      window.removeEventListener("hashchange", onLocationChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsMadeForOpen(false);
+    setOpenDesktopIndex(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isMadeForOpen || !isHomeDark) return;
+
+    requestAnimationFrame(() => {
+      const firstLink = document.querySelector<HTMLAnchorElement>(`#${madeForPanelId} a[href]`);
+      firstLink?.focus();
+    });
+  }, [isMadeForOpen, isHomeDark, madeForPanelId]);
 
   const handleDesktopKeyDown = (
     event: ReactKeyboardEvent<HTMLButtonElement>,
@@ -126,6 +176,232 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
       });
     }
   };
+  const closeMadeForMenu = () => {
+    setIsMadeForOpen(false);
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
+    }
+  };
+  const handleCustomersClick = () => {
+    setIsMadeForOpen(false);
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
+    }
+  };
+  const handleBackdropClick = (event: ReactMouseEvent<HTMLDivElement>) => {
+    if (event.target !== event.currentTarget) return;
+    closeMadeForMenu();
+  };
+
+  if (isHomeDark) {
+    const homeDesktopNavItems = [
+      { label: "Features", href: "#features", hasChevron: true },
+      { label: "FAQ", href: "#faq", hasChevron: false },
+      { label: "Support", href: "#support", hasChevron: false },
+    ];
+    const homeMobileNavItems = [
+      { label: "Made for", href: "#made-for", hasChevron: true },
+      ...homeDesktopNavItems,
+    ];
+    const madeForOptions = [
+      {
+        title: "Customers",
+        subtitle: "Sort through deals, find your taste, save money",
+        href: "/made-for/customers",
+      },
+      {
+        title: "Employees",
+        subtitle: "Enjoy the perks, and keep updated",
+        href: "#made-for",
+      },
+      {
+        title: "Vendors",
+        subtitle: "Stay organized, fill seats, see insights",
+        href: "#made-for",
+      },
+    ];
+
+    return (
+      <header className="sticky top-0 z-50 bg-[#0B0B0D]">
+        {isMadeForOpen ? (
+          <div
+            className="fixed inset-0 z-40 hidden bg-[rgba(0,0,0,0.55)] lg:block"
+            aria-hidden
+            onClick={handleBackdropClick}
+          />
+        ) : null}
+
+        <div className="mx-auto flex h-[88px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:grid lg:grid-cols-[auto_auto_1fr] lg:gap-4 lg:px-8">
+          <Link
+            href="/"
+            className="inline-flex shrink-0 items-center overflow-visible no-underline text-[#8E8E97] visited:text-[#8E8E97] hover:text-white/85"
+            aria-label="Chewsavvy"
+          >
+            <Image
+              src="/chewsavvywatermark.png"
+              alt="Chewsavvy"
+              width={332}
+              height={105}
+              priority
+              className="h-12 w-auto opacity-95 brightness-150 contrast-125 sm:h-14 lg:h-16"
+            />
+          </Link>
+
+          <nav className="hidden justify-self-start lg:block lg:ml-6" aria-label="Home Navigation">
+            <ul className="flex items-center gap-7">
+              <li>
+                <button
+                  type="button"
+                  aria-expanded={isMadeForOpen}
+                  aria-controls={madeForPanelId}
+                  onClick={() => setIsMadeForOpen((value) => !value)}
+                  className="group inline-flex min-h-[44px] items-center gap-1 text-[13px] font-medium tracking-[0.02em] text-white transition-colors hover:text-white"
+                >
+                  <span>Made for</span>
+                  <svg
+                    aria-hidden
+                    viewBox="0 0 10 6"
+                    className={cn(
+                      "h-[5px] w-[8px] shrink-0 self-center text-current transition-transform duration-150",
+                      isMadeForOpen && "rotate-180",
+                    )}
+                    fill="none"
+                  >
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                  </svg>
+                </button>
+              </li>
+              {homeDesktopNavItems.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    onClick={closeMadeForMenu}
+                    className="group inline-flex min-h-[44px] items-center gap-1 no-underline text-[13px] font-medium tracking-[0.02em] !text-white !visited:text-white transition-colors hover:!text-white"
+                  >
+                    <span>{item.label}</span>
+                    {item.hasChevron ? (
+                      <svg
+                        aria-hidden
+                        viewBox="0 0 10 6"
+                        className="h-[5px] w-[8px] shrink-0 self-center text-current"
+                        fill="none"
+                      >
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                      </svg>
+                    ) : null}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="hidden items-center gap-3 lg:flex lg:justify-self-end">
+            <Link
+              href="#support"
+              className="inline-flex min-h-[44px] items-center rounded-xl border-2 border-[#E7CA7D] bg-transparent px-4 no-underline text-sm font-medium !text-white !visited:text-white transition-colors hover:bg-[#E7CA7D]/10 hover:!text-white"
+            >
+              Vendor Portal
+            </Link>
+            <Link
+              href="#download"
+              className="inline-flex min-h-[44px] items-center rounded-xl bg-[#E7CA7D] px-6 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] transition-colors hover:bg-[#f2d894] hover:text-[#0B0B0D]"
+            >
+              Download Our App
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-home-nav"
+            onClick={() => setMobileOpen((value) => !value)}
+            className="ml-auto inline-flex shrink-0 items-center rounded-md border border-white/20 px-3 py-2 text-sm font-normal text-[#E6E6EA] lg:hidden"
+          >
+            Menu
+          </button>
+        </div>
+
+        <div className="h-px w-full bg-white/10" />
+
+        {isMadeForOpen ? (
+          <div
+            id={madeForPanelId}
+            role="menu"
+            aria-label="Made for options"
+            className="pointer-events-auto absolute inset-x-0 top-full z-[60] hidden border-y border-[rgba(255,255,255,0.12)] bg-[#0B0B0D] lg:block"
+          >
+            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-7">
+              <div className="grid grid-cols-3 gap-8">
+                {madeForOptions.map((option) => (
+                  <Link
+                    key={option.title}
+                    href={option.href}
+                    onClick={option.title === "Customers" ? handleCustomersClick : closeMadeForMenu}
+                    role="menuitem"
+                    className="pointer-events-auto group flex flex-col items-center justify-center rounded-xl bg-transparent px-6 py-5 text-center no-underline"
+                  >
+                    <p className="mb-0 text-base font-semibold leading-none text-center text-white/90 transition-colors group-hover:text-white">
+                      {option.title}
+                    </p>
+                    <p className="mt-0 max-w-[26ch] whitespace-normal text-center text-sm leading-tight text-white/60 transition-colors group-hover:text-white/70">
+                      {option.subtitle}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {mobileOpen ? (
+          <div
+            id="mobile-home-nav"
+            className="bg-[#0B0B0D] px-4 pb-4 pt-2 lg:hidden sm:px-6"
+          >
+            <ul className="space-y-1">
+              {homeMobileNavItems.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="group inline-flex min-h-[40px] items-center gap-1 no-underline text-sm text-white visited:text-white transition-colors hover:text-white"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span>{item.label}</span>
+                    {item.hasChevron ? (
+                      <svg
+                        aria-hidden
+                        viewBox="0 0 10 6"
+                        className="h-[6px] w-[10px] text-current"
+                        fill="none"
+                      >
+                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                      </svg>
+                    ) : null}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-3 flex flex-wrap gap-3">
+              <Link
+                href="#support"
+                className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#E7CA7D] visited:text-[#E7CA7D] hover:text-[#E7CA7D]"
+                onClick={() => setMobileOpen(false)}
+              >
+                Vendor Portal
+              </Link>
+              <Link
+                href="#download"
+                className="inline-flex min-h-[40px] items-center rounded-[10px] bg-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] hover:text-[#0B0B0D]"
+                onClick={() => setMobileOpen(false)}
+              >
+                Download Our App
+              </Link>
+            </div>
+          </div>
+        ) : null}
+      </header>
+    );
+  }
 
   return (
     <header
