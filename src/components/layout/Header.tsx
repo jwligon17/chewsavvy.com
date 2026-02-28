@@ -32,7 +32,13 @@ function getNavHref(item: MainNavItem) {
 
 export function Header({ content = chewsavvyContent }: HeaderProps) {
   const pathname = usePathname();
-  const isHomeDark = pathname === "/" || pathname === "/made-for" || pathname.startsWith("/made-for/");
+  const isHomeDark =
+    pathname === "/" ||
+    pathname === "/made-for" ||
+    pathname.startsWith("/made-for/") ||
+    pathname === "/faq" ||
+    pathname === "/features" ||
+    pathname === "/support";
   const desktopNav = useMemo(() => content.mainNav, [content.mainNav]);
   const [isMadeForOpen, setIsMadeForOpen] = useState(false);
   const [openDesktopIndex, setOpenDesktopIndex] = useState<number | null>(null);
@@ -200,9 +206,9 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
 
   if (isHomeDark) {
     const homeDesktopNavItems = [
-      { label: "Features", href: "#features", hasChevron: true },
-      { label: "FAQ", href: "#faq", hasChevron: false },
-      { label: "Support", href: "#support", hasChevron: false },
+      { label: "Features", href: "/features", hasChevron: true },
+      { label: "FAQ", href: "/faq", hasChevron: false },
+      { label: "Support", href: "/support", hasChevron: false },
     ];
     const homeMobileNavItems = [
       { label: "Made for", href: "#made-for", hasChevron: true },

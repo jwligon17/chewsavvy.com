@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["http://192.168.1.164:3000"],
+  // Hostnames only (no protocol/port) for Next.js dev origin checks.
+  allowedDevOrigins: ["192.168.1.164"],
   images: {
     localPatterns: [
       {

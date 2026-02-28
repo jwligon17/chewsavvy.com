@@ -15,10 +15,9 @@ export default function MadeForVendorsPage() {
           <p className="text-sm font-light tracking-wide text-white/60">Made for Vendors</p>
 
           <h1 className="mt-5 text-[clamp(2.2rem,5.2vw,4.2rem)] font-light leading-[1.05] tracking-tight text-white">
-            <span className="block">Your bottom line is</span>
+            <span className="block lg:whitespace-nowrap">Your bottom line is</span>
             <span className="block">
-              our{" "}
-              <span className="bg-gradient-to-r from-[#61AC3E] to-[#E7CA7D] bg-clip-text text-transparent">bottom line.</span>
+              our <span className="inline-block bg-gradient-to-r from-[#61AC3E] to-[#E7CA7D] bg-clip-text text-transparent">bottom line.</span>
             </span>
           </h1>
 
@@ -42,7 +41,7 @@ export default function MadeForVendorsPage() {
         </div>
 
         <div className="mx-auto w-full max-w-3xl lg:mx-0 lg:justify-self-end">
-          <div className="relative h-[380px] overflow-hidden rounded-2xl sm:h-[460px] lg:h-[560px]">
+          <div className="relative h-[380px] overflow-hidden rounded-2xl transform-gpu sm:h-[460px] lg:h-[560px] lg:translate-x-24 xl:translate-x-40">
             <Image
               src="/vendorfood.png"
               alt="Prepared restaurant dishes for vendor partners"

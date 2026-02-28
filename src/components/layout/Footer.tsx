@@ -13,7 +13,13 @@ type FooterProps = {
 
 export function Footer({ content = chewsavvyContent }: FooterProps) {
   const pathname = usePathname();
-  const isHomeDark = pathname === "/" || pathname === "/made-for" || pathname.startsWith("/made-for/");
+  const isHomeDark =
+    pathname === "/" ||
+    pathname === "/made-for" ||
+    pathname.startsWith("/made-for/") ||
+    pathname === "/faq" ||
+    pathname === "/features" ||
+    pathname === "/support";
   const hideStaySavvy = pathname.startsWith("/made-for");
   const showStaySavvy = pathname === "/" && !hideStaySavvy;
   const year = new Date().getFullYear();
