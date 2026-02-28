@@ -14,6 +14,8 @@ type FooterProps = {
 export function Footer({ content = chewsavvyContent }: FooterProps) {
   const pathname = usePathname();
   const isHomeDark = pathname === "/" || pathname === "/made-for" || pathname.startsWith("/made-for/");
+  const hideStaySavvy = pathname.startsWith("/made-for");
+  const showStaySavvy = pathname === "/" && !hideStaySavvy;
   const year = new Date().getFullYear();
   const { footer } = content;
   const consumerDescription =
@@ -37,9 +39,11 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
       <footer className="bg-[#0B0B0D] text-white">
         <div className="border-t border-white/[0.12]">
           <div className="mx-auto max-w-7xl px-4 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-14 lg:px-8 lg:pb-14">
-            <p className="text-center text-[clamp(2rem,5vw,3.3rem)] font-light tracking-tight text-white">
-              stay savvy.
-            </p>
+            {showStaySavvy ? (
+              <p className="text-center text-[clamp(2rem,5vw,3.3rem)] font-light tracking-tight text-white">
+                stay savvy.
+              </p>
+            ) : null}
 
             <div className="mt-10 grid gap-10 lg:grid-cols-[1.6fr_1.4fr] lg:items-start">
               <section aria-label="Chewsavvy summary">

@@ -138,7 +138,12 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
 
   useEffect(() => {
     setIsMadeForOpen(false);
+    setMobileOpen(false);
     setOpenDesktopIndex(null);
+    setOpenMobileIndex(null);
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "";
+    }
   }, [pathname]);
 
   useEffect(() => {
@@ -212,12 +217,12 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
       {
         title: "Employees",
         subtitle: "Enjoy the perks, and keep updated",
-        href: "#made-for",
+        href: "/made-for/employees",
       },
       {
         title: "Vendors",
         subtitle: "Stay organized, fill seats, see insights",
-        href: "#made-for",
+        href: "/made-for/vendors",
       },
     ];
 
@@ -336,7 +341,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <Link
                     key={option.title}
                     href={option.href}
-                    onClick={option.title === "Customers" ? handleCustomersClick : closeMadeForMenu}
+                    onClick={option.title === "Customers" || option.title === "Employees" || option.title === "Vendors" ? handleCustomersClick : closeMadeForMenu}
                     role="menuitem"
                     className="pointer-events-auto group flex flex-col items-center justify-center rounded-xl bg-transparent px-6 py-5 text-center no-underline"
                   >
