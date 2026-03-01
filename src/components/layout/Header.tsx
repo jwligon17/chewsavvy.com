@@ -338,14 +338,15 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               className="fixed inset-x-0 bottom-0 top-[var(--cs-nav-height)] z-[1100] overflow-y-auto bg-[#0B0B0D] px-4 pb-4 pt-2 text-white sm:px-6"
               onClick={(event) => event.stopPropagation()}
             >
-              <ul className="space-y-1 text-white">
+              <div className="-mx-4 mb-3 h-px bg-white/10 sm:-mx-6" />
+              <ul className="space-y-1.5 text-white">
                 <li>
                   <button
                     type="button"
                     aria-expanded={openMobileIndex === 0}
                     aria-controls="mobile-home-made-for"
                     onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
-                    className="flex min-h-[40px] w-full items-center justify-between text-left text-sm text-white"
+                    className="group inline-flex min-h-[44px] w-full items-center justify-between gap-1 text-left text-[13px] font-medium tracking-[0.02em] text-white transition-colors hover:text-white/80"
                   >
                     <span>Made for</span>
                     <svg
@@ -361,12 +362,12 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                     </svg>
                   </button>
                   {openMobileIndex === 0 ? (
-                    <ul id="mobile-home-made-for" className="space-y-1 pb-3">
+                    <ul id="mobile-home-made-for" className="space-y-1 pb-2 pl-4">
                       {mobileMadeForOptions.map((option) => (
                         <li key={option.title}>
                           <Link
                             href={option.href}
-                            className="text-white transition-opacity hover:opacity-80"
+                            className="text-white visited:text-white hover:text-white/80"
                             onClick={closeMobileMenu}
                           >
                             {option.title}
@@ -380,7 +381,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-white transition-opacity hover:opacity-80"
+                      className="text-white visited:text-white hover:text-white/80"
                       onClick={closeMobileMenu}
                     >
                       {item.label}
@@ -388,17 +389,17 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   </li>
                 ))}
               </ul>
-              <div className="mt-3 flex flex-wrap gap-3">
+              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Link
                   href="/coming-soon"
-                  className="text-white transition-opacity hover:opacity-80"
+                  className="text-white visited:text-white hover:text-white/80"
                   onClick={closeMobileMenu}
                 >
                   Vendor Portal
                 </Link>
                 <Link
                   href="/coming-soon"
-                  className="text-white transition-opacity hover:opacity-80"
+                  className="text-white visited:text-white hover:text-white/80"
                   onClick={closeMobileMenu}
                 >
                   Download Our App
@@ -571,13 +572,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                     const groups = item.megaMenu?.groups ?? [];
                     const isOpen = openMobileIndex === index;
                     const accordionId = `mobile-accordion-${index}`;
+                    const isMadeForItem = item.label === "Made for";
 
                     if (!groups.length) {
                       return (
                         <li key={item.label} className="pointer-events-auto">
                           <Link
                             href={getNavHref(item)}
-                            className="text-white transition-opacity hover:opacity-80"
+                            className="text-white visited:text-white hover:text-white/80"
                             onClick={closeMobileMenu}
                           >
                             {item.label}
@@ -589,21 +591,43 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                     return (
                       <li
                         key={item.label}
-                        className="pointer-events-auto rounded-lg border border-white/20"
+                        className={cn(
+                          "pointer-events-auto",
+                          !isMadeForItem && "rounded-lg border border-white/20",
+                        )}
                       >
                         <button
                           type="button"
                           aria-expanded={isOpen}
                           aria-controls={accordionId}
                           onClick={() => setOpenMobileIndex(isOpen ? null : index)}
-                          className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-bold text-white hover:text-white/85"
+                          className={cn(
+                            "flex w-full items-center justify-between text-left text-sm text-white hover:text-white/80",
+                            isMadeForItem ? "min-h-[44px] font-medium" : "px-4 py-3 font-bold",
+                          )}
                         >
                           <span>{item.label}</span>
-                          <span aria-hidden>{isOpen ? "−" : "+"}</span>
+                          <svg
+                            aria-hidden
+                            viewBox="0 0 10 6"
+                            className={cn(
+                              "h-[5px] w-[8px] shrink-0 text-current transition-transform duration-150",
+                              isOpen && "rotate-180",
+                            )}
+                            fill="none"
+                          >
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                          </svg>
                         </button>
 
                         {isOpen ? (
-                          <div id={accordionId} className="space-y-4 px-4 pb-4">
+                          <div
+                            id={accordionId}
+                            className={cn(
+                              "space-y-4 pb-4",
+                              isMadeForItem ? "pl-4" : "px-4",
+                            )}
+                          >
                             {groups.map((group) => (
                               <div key={group.title}>
                                 <p className="mb-2 text-xs font-bold uppercase tracking-wider text-white/80">
@@ -615,7 +639,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                                       <Link
                                         href={link.href}
                                         onClick={closeMobileMenu}
-                                        className="text-white transition-opacity hover:opacity-80"
+                                        className="text-white visited:text-white hover:text-white/80"
                                       >
                                         {link.label}
                                       </Link>
