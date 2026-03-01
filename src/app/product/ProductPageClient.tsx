@@ -1,76 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
 
-import { EKGMonitor, type EKGMonitorHandle } from "@/components/ekg/EKGMonitor";
 import { ProductGuidanceSection } from "@/components/sections/ProductGuidanceSection";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 
-function clamp(value: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, value));
-}
-
-function intensityFromWheel(event: WheelEvent) {
-  const magnitude = Math.abs(event.deltaY) + Math.abs(event.deltaX) * 0.5;
-  return clamp(0.75 + magnitude / 320, 0.6, 1.5);
-}
-
 export default function ProductPageClient() {
-  const ekgRef = useRef<EKGMonitorHandle | null>(null);
-  const lastScrollYRef = useRef(0);
-  const lastScrollTsRef = useRef(0);
-  const lastTouchTsRef = useRef(0);
-
-  useEffect(() => {
-    lastScrollYRef.current = window.scrollY;
-    lastScrollTsRef.current = performance.now();
-
-    const onPointerDown = (event: PointerEvent) => {
-      if (event.pointerType === "touch" && performance.now() - lastTouchTsRef.current < 450) {
-        return;
-      }
-      ekgRef.current?.triggerSpike(1);
-    };
-
-    const onTouchStart = () => {
-      lastTouchTsRef.current = performance.now();
-      ekgRef.current?.triggerSpike(1);
-    };
-
-    const onWheel = (event: WheelEvent) => {
-      ekgRef.current?.triggerSpike(intensityFromWheel(event));
-    };
-
-    const onScroll = () => {
-      const now = performance.now();
-      const currentY = window.scrollY;
-      const delta = Math.abs(currentY - lastScrollYRef.current);
-      const elapsed = Math.max(16, now - lastScrollTsRef.current);
-      const velocity = delta / elapsed;
-      const intensity = clamp(0.72 + velocity * 2.8, 0.6, 1.5);
-
-      ekgRef.current?.triggerSpike(intensity);
-      lastScrollYRef.current = currentY;
-      lastScrollTsRef.current = now;
-    };
-
-    const options: AddEventListenerOptions = { passive: true, capture: true };
-
-    window.addEventListener("pointerdown", onPointerDown, options);
-    window.addEventListener("touchstart", onTouchStart, options);
-    window.addEventListener("wheel", onWheel, options);
-    window.addEventListener("scroll", onScroll, options);
-
-    return () => {
-      window.removeEventListener("pointerdown", onPointerDown, options);
-      window.removeEventListener("touchstart", onTouchStart, options);
-      window.removeEventListener("wheel", onWheel, options);
-      window.removeEventListener("scroll", onScroll, options);
-    };
-  }, []);
-
   return (
     <section className="overflow-x-hidden lg:overflow-x-visible pt-10 sm:pt-12 lg:pt-16">
       <Container>
@@ -85,7 +21,7 @@ export default function ProductPageClient() {
       </Container>
 
       <div className="pointer-events-none relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-x-hidden">
-        <EKGMonitor ref={ekgRef} className="pointer-events-none h-[90px] sm:h-[104px] lg:h-[152px]" />
+        <div aria-hidden="true" className="pointer-events-none h-[90px] sm:h-[104px] lg:h-[152px]" />
       </div>
 
       <Container>
