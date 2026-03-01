@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { chewsavvyContent } from "@/content/chewsavvy";
 import type { ChewsavvyContent } from "@/content/chewsavvy";
+import { homeDesktopNavItems, madeForOptions } from "@/components/layout/homeNavigation";
 
 type FooterProps = {
   content?: ChewsavvyContent;
@@ -19,7 +20,9 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
     pathname.startsWith("/made-for/") ||
     pathname === "/faq" ||
     pathname === "/features" ||
-    pathname === "/support";
+    pathname === "/support" ||
+    pathname === "/contact" ||
+    pathname === "/coming-soon";
   const hideStaySavvy = pathname.startsWith("/made-for");
   const showStaySavvy = pathname === "/" && !hideStaySavvy;
   const year = new Date().getFullYear();
@@ -34,12 +37,9 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
 
   if (isHomeDark) {
     const homeLinks = [
-      { label: "Made for", href: "#made-for" },
-      { label: "Features", href: "#features" },
-      { label: "Blog", href: "/blog" },
-      { label: "FAQ", href: "#faq" },
-      { label: "Support", href: "#support" },
-    ];
+      { label: "Made for", href: madeForOptions[0]?.href ?? "/made-for/customers" },
+      ...homeDesktopNavItems.map(({ label, href }) => ({ label, href })),
+    ].filter((link) => link.label !== "Blog");
 
     return (
       <footer className="bg-[#0B0B0D] text-white">
@@ -51,55 +51,53 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
               </p>
             ) : null}
 
-            <div className="mt-10 grid gap-10 lg:grid-cols-[1.6fr_1.4fr] lg:items-start">
-              <section aria-label="Chewsavvy summary">
-                <Link href="/" className="inline-flex items-center" aria-label="Chewsavvy home">
-                  <Image
-                    src="/chewsavvywatermark.png"
-                    alt="Chewsavvy"
-                    width={332}
-                    height={105}
-                    className="h-10 w-auto sm:h-12 lg:h-14 [filter:brightness(0)_invert(1)_contrast(1.15)]"
-                  />
-                </Link>
-                <p className="mt-4 max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5]">
-                  Curating the best deals and a better experience
-                  <br />
-                  from app, to table, to &quot;time for the check&quot;.
-                </p>
-              </section>
+            <div className="mt-10 grid gap-y-3 md:grid-cols-[1fr_auto] md:items-baseline md:gap-x-8">
+              <Link href="/" className="inline-flex items-center md:mt-2" aria-label="Chewsavvy home">
+                <Image
+                  src="/chewsavvywatermark.png"
+                  alt="Chewsavvy"
+                  width={332}
+                  height={105}
+                  className="h-10 w-auto sm:h-12 lg:h-14 [filter:brightness(0)_invert(1)_contrast(1.15)]"
+                />
+              </Link>
+              <nav aria-label="Footer links" className="md:justify-self-end">
+                <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#A7A7AE] md:justify-end lg:flex-nowrap">
+                  {homeLinks.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-[#A7A7AE] visited:text-[#A7A7AE] transition-colors hover:text-white/85"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
 
-              <section className="text-sm leading-relaxed text-white/65 lg:justify-self-end lg:text-right">
-                <div className="flex flex-col lg:items-end">
-                  <nav aria-label="Footer links">
-                    <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#A7A7AE] lg:flex-nowrap lg:justify-end">
-                      {homeLinks.map((link) => (
-                        <li key={link.label}>
-                          <Link
-                            href={link.href}
-                            className="text-[#A7A7AE] visited:text-[#A7A7AE] transition-colors hover:text-white/85"
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav>
-                  <a
-                    href="mailto:info@chewsavvy.com"
-                    className="mt-6 text-white/80 transition-colors hover:text-white"
-                  >
-                    info@chewsavvy.com
-                  </a>
-                  <p className="mt-2 text-white/65">A Delaware Limited Liability Corporation</p>
-                </div>
-              </section>
+              <p className="max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5]">
+                Curating the best deals and a better experience
+              </p>
+              <a
+                href="mailto:admin@chewsavvy.com"
+                className="text-sm leading-relaxed text-white/80 transition-colors hover:text-white md:justify-self-end"
+              >
+                admin@chewsavvy.com
+              </a>
+
+              <p className="max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5]">
+                from app, to table, to &quot;time for the check&quot;.
+              </p>
+              <p className="text-sm leading-relaxed text-white/65 md:justify-self-end">
+                A Texas Limited Liability Corporation
+              </p>
             </div>
           </div>
         </div>
 
         <div className="bg-gradient-to-r from-[#2E5BFF] to-[#E7CA7D]">
-          <div className="flex w-full flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm sm:px-6 lg:px-8">
+          <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm sm:px-6 lg:px-8">
             <p className="text-white">{`© ${year} Chewsavvy. All rights reserved.`}</p>
             <p className="text-black/80">
               <Link href="/privacy" className="hover:underline">

@@ -2,6 +2,7 @@
 @import "../styles/theme.css";
 
 :root {
+  --cs-nav-height: 88px;
 }
 
 @theme inline {

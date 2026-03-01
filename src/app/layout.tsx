@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { MainContent } from "@/components/layout/MainContent";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -72,7 +73,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Header />
-        <main id="main-content">{children}</main>
+        <MainContent>{children}</MainContent>
         <Footer />
       </body>
     </html>

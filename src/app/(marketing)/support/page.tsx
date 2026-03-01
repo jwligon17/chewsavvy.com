@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -17,12 +18,12 @@ export default function SupportPage() {
           Drop us an email. We&apos;ll contact you as soon as possible to answer any questions you have.
         </p>
 
-        <a
-          href="mailto:info@chewsavvy.com?subject=Support%20Request"
+        <Link
+          href="/contact"
           className="mt-12 inline-flex h-20 w-full max-w-2xl items-center justify-center rounded-xl bg-white px-8 text-lg font-medium text-[#0B0B0D] transition-transform duration-200 hover:-translate-y-0.5"
         >
           Contact Us
-        </a>
+        </Link>
       </div>
     </section>
   );

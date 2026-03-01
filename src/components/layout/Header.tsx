@@ -10,6 +10,8 @@ import { createPortal } from "react-dom";
 
 import { chewsavvyContent } from "@/content/chewsavvy";
 import type { MainNavItem, ChewsavvyContent } from "@/content/chewsavvy";
+import { homeDesktopNavItems, madeForOptions } from "@/components/layout/homeNavigation";
+import { isMarketingDarkRoute } from "@/components/layout/marketingRoutes";
 
 type HeaderProps = {
   content?: ChewsavvyContent;
@@ -32,13 +34,7 @@ function getNavHref(item: MainNavItem) {
 
 export function Header({ content = chewsavvyContent }: HeaderProps) {
   const pathname = usePathname();
-  const isHomeDark =
-    pathname === "/" ||
-    pathname === "/made-for" ||
-    pathname.startsWith("/made-for/") ||
-    pathname === "/faq" ||
-    pathname === "/features" ||
-    pathname === "/support";
+  const isHomeDark = isMarketingDarkRoute(pathname);
   const desktopNav = useMemo(() => content.mainNav, [content.mainNav]);
   const [isMadeForOpen, setIsMadeForOpen] = useState(false);
   const [openDesktopIndex, setOpenDesktopIndex] = useState<number | null>(null);
@@ -114,45 +110,6 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   }, [mobileOpen, isMadeForOpen]);
 
   useEffect(() => {
-    function onLocationChange() {
-      setIsMadeForOpen(false);
-    }
-
-    const historyRef = window.history;
-    const originalPushState = historyRef.pushState;
-    const originalReplaceState = historyRef.replaceState;
-
-    historyRef.pushState = function pushState(...args) {
-      originalPushState.apply(this, args);
-      onLocationChange();
-    };
-
-    historyRef.replaceState = function replaceState(...args) {
-      originalReplaceState.apply(this, args);
-      onLocationChange();
-    };
-
-    window.addEventListener("popstate", onLocationChange);
-    window.addEventListener("hashchange", onLocationChange);
-    return () => {
-      historyRef.pushState = originalPushState;
-      historyRef.replaceState = originalReplaceState;
-      window.removeEventListener("popstate", onLocationChange);
-      window.removeEventListener("hashchange", onLocationChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    setIsMadeForOpen(false);
-    setMobileOpen(false);
-    setOpenDesktopIndex(null);
-    setOpenMobileIndex(null);
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "";
-    }
-  }, [pathname]);
-
-  useEffect(() => {
     if (!isMadeForOpen || !isHomeDark) return;
 
     requestAnimationFrame(() => {
@@ -205,35 +162,13 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   };
 
   if (isHomeDark) {
-    const homeDesktopNavItems = [
-      { label: "Features", href: "/features", hasChevron: true },
-      { label: "FAQ", href: "/faq", hasChevron: false },
-      { label: "Support", href: "/support", hasChevron: false },
-    ];
     const homeMobileNavItems = [
       { label: "Made for", href: "#made-for", hasChevron: true },
       ...homeDesktopNavItems,
     ];
-    const madeForOptions = [
-      {
-        title: "Customers",
-        subtitle: "Sort through deals, find your taste, save money",
-        href: "/made-for/customers",
-      },
-      {
-        title: "Employees",
-        subtitle: "Enjoy the perks, and keep updated",
-        href: "/made-for/employees",
-      },
-      {
-        title: "Vendors",
-        subtitle: "Stay organized, fill seats, see insights",
-        href: "/made-for/vendors",
-      },
-    ];
 
     return (
-      <header className="sticky top-0 z-50 bg-[#0B0B0D]">
+      <header className="fixed inset-x-0 top-0 z-[1200] bg-[#0B0B0D]">
         {isMadeForOpen ? (
           <div
             className="fixed inset-0 z-40 hidden bg-[rgba(0,0,0,0.55)] lg:block"
@@ -242,7 +177,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
           />
         ) : null}
 
-        <div className="mx-auto flex h-[88px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:grid lg:grid-cols-[auto_auto_1fr] lg:gap-4 lg:px-8">
+        <div className="mx-auto flex h-[var(--cs-nav-height)] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:grid lg:grid-cols-[auto_auto_1fr] lg:gap-4 lg:px-8">
           <Link
             href="/"
             className="inline-flex shrink-0 items-center overflow-visible no-underline text-[#8E8E97] visited:text-[#8E8E97] hover:text-white/85"
@@ -308,13 +243,13 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
 
           <div className="hidden items-center gap-3 lg:flex lg:justify-self-end">
             <Link
-              href="#support"
+              href="/coming-soon"
               className="inline-flex min-h-[44px] items-center rounded-xl border-2 border-[#E7CA7D] bg-transparent px-4 no-underline text-sm font-medium !text-white !visited:text-white transition-colors hover:bg-[#E7CA7D]/10 hover:!text-white"
             >
               Vendor Portal
             </Link>
             <Link
-              href="#download"
+              href="/coming-soon"
               className="inline-flex min-h-[44px] items-center rounded-xl bg-[#E7CA7D] px-6 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] transition-colors hover:bg-[#f2d894] hover:text-[#0B0B0D]"
             >
               Download Our App
@@ -394,14 +329,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
             </ul>
             <div className="mt-3 flex flex-wrap gap-3">
               <Link
-                href="#support"
+                href="/coming-soon"
                 className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#E7CA7D] visited:text-[#E7CA7D] hover:text-[#E7CA7D]"
                 onClick={() => setMobileOpen(false)}
               >
                 Vendor Portal
               </Link>
               <Link
-                href="#download"
+                href="/coming-soon"
                 className="inline-flex min-h-[40px] items-center rounded-[10px] bg-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] hover:text-[#0B0B0D]"
                 onClick={() => setMobileOpen(false)}
               >
