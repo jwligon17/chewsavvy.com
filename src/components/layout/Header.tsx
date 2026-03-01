@@ -276,15 +276,21 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
 
           <button
             type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-home-nav"
             onClick={(event) => {
               event.stopPropagation();
               setMobileOpen((value) => !value);
             }}
-            className="ml-auto inline-flex shrink-0 items-center rounded-md border border-white/20 px-3 py-2 text-sm font-normal text-[#E6E6EA] lg:hidden"
+            className="ml-auto inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/20 text-white lg:hidden"
           >
-            Menu
+            <span className="sr-only">{mobileOpen ? "Close menu" : "Open menu"}</span>
+            <span aria-hidden className="flex flex-col gap-[5px]">
+              <span className="block h-[2px] w-[22px] bg-current transition-transform duration-150" />
+              <span className="block h-[2px] w-[22px] bg-current transition-opacity duration-150" />
+              <span className="block h-[2px] w-[22px] bg-current transition-transform duration-150" />
+            </span>
           </button>
         </div>
 
@@ -332,23 +338,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               className="fixed inset-x-0 top-[var(--cs-nav-height)] z-[1100] bg-[#0B0B0D] px-4 pb-4 pt-2 sm:px-6"
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="mb-3 flex justify-end">
-                <button
-                  type="button"
-                  onClick={closeMobileMenu}
-                  className="inline-flex min-h-[40px] items-center rounded-[10px] border border-white/20 px-3 text-sm font-medium text-white/85"
-                >
-                  Close
-                </button>
-              </div>
-              <ul className="space-y-1">
-                <li className="rounded-md border border-white/10">
+              <ul className="space-y-1 text-white">
+                <li>
                   <button
                     type="button"
                     aria-expanded={openMobileIndex === 0}
                     aria-controls="mobile-home-made-for"
                     onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
-                    className="flex min-h-[40px] w-full items-center justify-between px-3 text-left text-sm text-white"
+                    className="flex min-h-[40px] w-full items-center justify-between text-left text-sm text-white"
                   >
                     <span>Made for</span>
                     <svg
@@ -364,12 +361,12 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                     </svg>
                   </button>
                   {openMobileIndex === 0 ? (
-                    <ul id="mobile-home-made-for" className="space-y-1 px-3 pb-3">
+                    <ul id="mobile-home-made-for" className="space-y-1 pb-3">
                       {mobileMadeForOptions.map((option) => (
                         <li key={option.title}>
                           <Link
                             href={option.href}
-                            className="block rounded-md px-2 py-2 text-sm text-white/85 no-underline transition-colors hover:text-white"
+                            className="block px-2 py-2 text-sm text-white no-underline transition-colors hover:text-white/85"
                             onClick={closeMobileMenu}
                           >
                             {option.title}
@@ -383,7 +380,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="group inline-flex min-h-[40px] items-center no-underline text-sm text-white visited:text-white transition-colors hover:text-white"
+                      className="group inline-flex min-h-[40px] items-center no-underline text-sm text-white visited:text-white transition-colors hover:text-white/85"
                       onClick={closeMobileMenu}
                     >
                       {item.label}
@@ -394,7 +391,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               <div className="mt-3 flex flex-wrap gap-3">
                 <Link
                   href="/coming-soon"
-                  className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#E7CA7D] visited:text-[#E7CA7D] hover:text-[#E7CA7D]"
+                  className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-white visited:text-white hover:text-white/85"
                   onClick={closeMobileMenu}
                 >
                   Vendor Portal
@@ -480,6 +477,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
 
         <button
           type="button"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav-drawer"
           onClick={(event) => {
@@ -488,7 +486,12 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
           }}
           className="ml-auto inline-flex shrink-0 items-center rounded-md border border-[var(--cs-border)] px-3 py-2 text-sm font-normal text-[var(--cs-primary-2)] lg:hidden"
         >
-          Menu
+          <span className="sr-only">{mobileOpen ? "Close menu" : "Open menu"}</span>
+          <span aria-hidden="true" className="flex flex-col gap-[5px]">
+            <span className="block h-[2px] w-[22px] rounded bg-white"></span>
+            <span className="block h-[2px] w-[22px] rounded bg-white"></span>
+            <span className="block h-[2px] w-[22px] rounded bg-white"></span>
+          </span>
         </button>
       </div>
 
