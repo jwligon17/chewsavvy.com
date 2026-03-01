@@ -3,8 +3,49 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
+const MAX_MESSAGE_LENGTH = 5000;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const ADMIN_EMAIL = "admin@chewsavvy.com";
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHtml(input: string) {
+  return input
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function getClientIp(req: Request) {
+  const forwardedFor = req.headers.get("x-forwarded-for");
+  if (forwardedFor) {
+    return forwardedFor.split(",")[0]?.trim() || "unknown";
+  }
+  return req.headers.get("x-real-ip")?.trim() || "unknown";
+}
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const current = rateLimitStore.get(ip);
+
+  if (!current || now > current.resetAt) {
+    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return true;
+  }
+
+  current.count += 1;
+  rateLimitStore.set(ip, current);
+  return false;
 }
 
 export async function POST(req: Request) {
@@ -17,73 +58,77 @@ export async function POST(req: Request) {
     }
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const body = await req.json().catch(() => null);
-    const name = (body?.name ?? "").trim();
-    const email = (body?.email ?? "").trim();
-    const favoriteStores = (body?.favoriteStores ?? "").trim();
-    const message = (body?.message ?? "").trim();
-
-    const companyWebsite = (body?.companyWebsite ?? "").trim();
-    if (companyWebsite) {
-      return NextResponse.json({ ok: true });
+    const ip = getClientIp(req);
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
     }
 
-    if (!name || !email) {
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
       return NextResponse.json(
-        { ok: false, error: "Name and email are required." },
+        { ok: false, error: "Invalid request body." },
         { status: 400 }
       );
     }
+
+    const name = (body?.name ?? "").trim();
+    const email = (body?.email ?? "").trim();
+    const organization = (body?.organization ?? "").trim();
+    const message = (body?.message ?? "").trim();
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { ok: false, error: "Name, email, and message are required." },
+        { status: 400 }
+      );
+    }
+
     if (!isValidEmail(email)) {
       return NextResponse.json(
         { ok: false, error: "Please enter a valid email address." },
         { status: 400 }
       );
     }
-    if (message.length > 5000) {
+
+    if (message.length > MAX_MESSAGE_LENGTH) {
       return NextResponse.json(
         { ok: false, error: "Message is too long." },
-        { status: 400 }
+        { status: 413 }
       );
     }
 
-    const to = "jason@chewsavvy.com";
-
-    const from =
-      process.env.CONTACT_FROM_EMAIL || "Chewsavvy <onboarding@resend.dev>";
-
-    const subject = `Early access request — ${name}${favoriteStores ? ` (${favoriteStores})` : ""}`;
+    const from = process.env.CONTACT_FROM_EMAIL?.trim() || "Chewsavvy <onboarding@resend.dev>";
+    const subject = `Contact Us submission from ${name}`;
 
     const text = [
       `Name: ${name}`,
       `Email: ${email}`,
-      favoriteStores ? `Favorite stores: ${favoriteStores}` : null,
-      message ? "" : null,
-      message ? "Message:" : null,
-      message || null,
+      `Organization: ${organization || "N/A"}`,
+      "",
+      "Message:",
+      message,
     ]
       .filter(Boolean)
       .join("\n");
 
     const html = `
       <div style="font-family: ui-sans-serif, system-ui; line-height: 1.5;">
-        <h2>New early access request</h2>
+        <h2>New Contact Us submission</h2>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        ${favoriteStores ? `<p><strong>Favorite stores:</strong> ${escapeHtml(favoriteStores)}</p>` : ""}
-        ${
-          message
-            ? `<hr />
+        <p><strong>Organization:</strong> ${escapeHtml(organization || "N/A")}</p>
+        <hr />
         <p><strong>Message:</strong></p>
-        <pre style="white-space: pre-wrap;">${escapeHtml(message)}</pre>`
-            : ""
-        }
+        <pre style="white-space: pre-wrap;">${escapeHtml(message)}</pre>
       </div>
     `;
 
     const { error } = await resend.emails.send({
       from,
-      to,
+      to: ADMIN_EMAIL,
       subject,
       text,
       html,
@@ -106,14 +151,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
-
-// Minimal HTML escape to avoid injection in the email body
-function escapeHtml(input: string) {
-  return input
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
 }
