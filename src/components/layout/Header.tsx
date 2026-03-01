@@ -172,6 +172,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
     setOpenMobileIndex(null);
   };
   const mobileOverlayLinkClassName = "text-white visited:text-white hover:text-white/80";
+  const mobileTopNavClass = "text-white text-xl font-medium leading-tight";
 
   useEffect(() => {
     if (prevPath.current !== pathname) {
@@ -347,7 +348,10 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                     aria-expanded={openMobileIndex === 0}
                     aria-controls="mobile-home-made-for"
                     onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
-                    className="group inline-flex min-h-[44px] w-full items-center justify-between gap-1 text-left text-[13px] font-medium tracking-[0.02em] text-white transition-colors hover:text-white/80"
+                    className={cn(
+                      "group inline-flex min-h-[44px] w-full items-center justify-between gap-1 text-left transition-colors hover:text-white/80",
+                      mobileTopNavClass,
+                    )}
                   >
                     <span>Made for</span>
                     <svg
@@ -382,7 +386,10 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-white visited:text-white hover:text-white/80"
+                      className={cn(
+                        "visited:text-white hover:text-white/80",
+                        mobileTopNavClass,
+                      )}
                       onClick={closeMobileMenu}
                     >
                       {item.label}
@@ -580,7 +587,10 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                         <li key={item.label} className="pointer-events-auto">
                           <Link
                             href={getNavHref(item)}
-                            className={mobileOverlayLinkClassName}
+                            className={cn(
+                              mobileOverlayLinkClassName,
+                              mobileTopNavClass,
+                            )}
                             onClick={closeMobileMenu}
                           >
                             {item.label}
@@ -603,8 +613,9 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                           aria-controls={accordionId}
                           onClick={() => setOpenMobileIndex(isOpen ? null : index)}
                           className={cn(
-                            "flex w-full items-center justify-between text-left text-sm text-white hover:text-white/80",
-                            isMadeForItem ? "min-h-[44px] font-medium" : "px-4 py-3 font-bold",
+                            "flex w-full items-center justify-between text-left hover:text-white/80",
+                            mobileTopNavClass,
+                            isMadeForItem ? "min-h-[44px]" : "px-4 py-3",
                           )}
                         >
                           <span>{item.label}</span>
