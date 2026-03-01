@@ -171,6 +171,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
     setMobileOpen(false);
     setOpenMobileIndex(null);
   };
+  const mobileOverlayLinkClassName = "text-white visited:text-white hover:text-white/80";
 
   useEffect(() => {
     if (prevPath.current !== pathname) {
@@ -335,7 +336,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
             />
             <div
               id="mobile-home-nav"
-              className="fixed inset-x-0 bottom-0 top-[var(--cs-nav-height)] z-[1100] overflow-y-auto bg-[#0B0B0D] px-4 pb-4 pt-2 text-white sm:px-6"
+              className="fixed inset-x-0 bottom-0 top-[var(--cs-nav-height)] z-[1100] overflow-y-auto bg-[#0B0B0D] px-4 pb-4 pt-2 text-white [a]:text-white [a:visited]:text-white [a:hover]:text-white/80 sm:px-6"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="-mx-4 mb-3 h-px bg-white/10 sm:-mx-6" />
@@ -367,7 +368,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                         <li key={option.title}>
                           <Link
                             href={option.href}
-                            className="text-white visited:text-white hover:text-white/80"
+                            className={mobileOverlayLinkClassName}
                             onClick={closeMobileMenu}
                           >
                             {option.title}
@@ -381,7 +382,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-white visited:text-white hover:text-white/80"
+                      className={mobileOverlayLinkClassName}
                       onClick={closeMobileMenu}
                     >
                       {item.label}
@@ -389,17 +390,17 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   </li>
                 ))}
               </ul>
-              <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="mt-5 flex flex-col gap-3">
                 <Link
                   href="/coming-soon"
-                  className="text-white visited:text-white hover:text-white/80"
+                  className="inline-flex items-center justify-center rounded-full border border-[var(--cs-accent)] px-5 py-3 text-sm font-medium text-white"
                   onClick={closeMobileMenu}
                 >
                   Vendor Portal
                 </Link>
                 <Link
                   href="/coming-soon"
-                  className="text-white visited:text-white hover:text-white/80"
+                  className="inline-flex items-center justify-center rounded-full bg-[var(--cs-accent)] px-5 py-3 text-sm font-medium text-[#0B0B0D]"
                   onClick={closeMobileMenu}
                 >
                   Download Our App
@@ -549,7 +550,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               <div
                 ref={mobileDrawerRef}
                 id="mobile-nav-drawer"
-                className="pointer-events-auto fixed inset-0 z-[1100] w-full overflow-y-auto bg-[#0B0B0D] p-5 text-white shadow-xl"
+                className="pointer-events-auto fixed inset-0 z-[1100] w-full overflow-y-auto bg-[#0B0B0D] p-5 text-white [a]:text-white [a:visited]:text-white [a:hover]:text-white/80 shadow-xl"
                 role="dialog"
                 aria-modal="true"
                 aria-label="Mobile navigation"
@@ -579,7 +580,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                         <li key={item.label} className="pointer-events-auto">
                           <Link
                             href={getNavHref(item)}
-                            className="text-white visited:text-white hover:text-white/80"
+                            className={mobileOverlayLinkClassName}
                             onClick={closeMobileMenu}
                           >
                             {item.label}
@@ -638,8 +639,8 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                                     <li key={link.label} className="pointer-events-auto">
                                       <Link
                                         href={link.href}
+                                        className={mobileOverlayLinkClassName}
                                         onClick={closeMobileMenu}
-                                        className="text-white visited:text-white hover:text-white/80"
                                       >
                                         {link.label}
                                       </Link>
