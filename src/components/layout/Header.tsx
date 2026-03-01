@@ -10,7 +10,11 @@ import { createPortal } from "react-dom";
 
 import { chewsavvyContent } from "@/content/chewsavvy";
 import type { MainNavItem, ChewsavvyContent } from "@/content/chewsavvy";
-import { homeDesktopNavItems, madeForOptions } from "@/components/layout/homeNavigation";
+import {
+  homeDesktopNavItems,
+  homeMobileNavItems,
+  madeForOptions,
+} from "@/components/layout/homeNavigation";
 import { isMarketingDarkRoute } from "@/components/layout/marketingRoutes";
 
 type HeaderProps = {
@@ -160,13 +164,12 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
     if (event.target !== event.currentTarget) return;
     closeMadeForMenu();
   };
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setOpenMobileIndex(null);
+  };
 
   if (isHomeDark) {
-    const homeMobileNavItems = [
-      { label: "Made for", href: "#made-for", hasChevron: true },
-      ...homeDesktopNavItems,
-    ];
-
     return (
       <header className="fixed inset-x-0 top-0 z-[1200] bg-[#0B0B0D]">
         {isMadeForOpen ? (
@@ -260,7 +263,10 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
             type="button"
             aria-expanded={mobileOpen}
             aria-controls="mobile-home-nav"
-            onClick={() => setMobileOpen((value) => !value)}
+            onClick={() => {
+              setMobileOpen((value) => !value);
+              setOpenMobileIndex(null);
+            }}
             className="ml-auto inline-flex shrink-0 items-center rounded-md border border-white/20 px-3 py-2 text-sm font-normal text-[#E6E6EA] lg:hidden"
           >
             Menu
@@ -305,40 +311,87 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
             className="bg-[#0B0B0D] px-4 pb-4 pt-2 lg:hidden sm:px-6"
           >
             <ul className="space-y-1">
-              {homeMobileNavItems.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="group inline-flex min-h-[40px] items-center gap-1 no-underline text-sm text-white visited:text-white transition-colors hover:text-white"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    <span>{item.label}</span>
-                    {item.hasChevron ? (
-                      <svg
-                        aria-hidden
-                        viewBox="0 0 10 6"
-                        className="h-[6px] w-[10px] text-current"
-                        fill="none"
+              {homeMobileNavItems.map((item, index) => {
+                const hasChildren = Boolean(item.children?.length);
+                const isOpen = openMobileIndex === index;
+
+                if (hasChildren) {
+                  return (
+                    <li key={item.label} className="rounded-md border border-white/10">
+                      <button
+                        type="button"
+                        aria-expanded={isOpen}
+                        aria-controls={`mobile-home-item-${index}`}
+                        onClick={() => setOpenMobileIndex(isOpen ? null : index)}
+                        className="flex min-h-[40px] w-full items-center justify-between px-3 text-left text-sm text-white"
                       >
-                        <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
-                      </svg>
-                    ) : null}
-                  </Link>
-                </li>
-              ))}
+                        <span>{item.label}</span>
+                        <svg
+                          aria-hidden
+                          viewBox="0 0 10 6"
+                          className={cn(
+                            "h-[6px] w-[10px] text-current transition-transform",
+                            isOpen && "rotate-180",
+                          )}
+                          fill="none"
+                        >
+                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                        </svg>
+                      </button>
+                      {isOpen ? (
+                        <ul id={`mobile-home-item-${index}`} className="space-y-1 px-3 pb-3">
+                          {item.children!.map((child) => (
+                            <li key={child.label}>
+                              <Link
+                                href={child.href}
+                                className="block rounded-md px-2 py-2 text-sm text-white/85 no-underline transition-colors hover:text-white"
+                                onClick={closeMobileMenu}
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href ?? "/"}
+                      className="group inline-flex min-h-[40px] items-center gap-1 no-underline text-sm text-white visited:text-white transition-colors hover:text-white"
+                      onClick={closeMobileMenu}
+                    >
+                      <span>{item.label}</span>
+                      {item.hasChevron ? (
+                        <svg
+                          aria-hidden
+                          viewBox="0 0 10 6"
+                          className="h-[6px] w-[10px] text-current"
+                          fill="none"
+                        >
+                          <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                        </svg>
+                      ) : null}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             <div className="mt-3 flex flex-wrap gap-3">
               <Link
                 href="/coming-soon"
                 className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#E7CA7D] visited:text-[#E7CA7D] hover:text-[#E7CA7D]"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMobileMenu}
               >
                 Vendor Portal
               </Link>
               <Link
                 href="/coming-soon"
                 className="inline-flex min-h-[40px] items-center rounded-[10px] bg-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] hover:text-[#0B0B0D]"
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMobileMenu}
               >
                 Download Our App
               </Link>
@@ -417,7 +470,10 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
           type="button"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav-drawer"
-          onClick={() => setMobileOpen((value) => !value)}
+          onClick={() => {
+            setMobileOpen((value) => !value);
+            setOpenMobileIndex(null);
+          }}
           className="ml-auto inline-flex shrink-0 items-center rounded-md border border-[var(--cs-border)] px-3 py-2 text-sm font-normal text-[var(--cs-primary-2)] lg:hidden"
         >
           Menu
@@ -472,7 +528,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               <div
                 className="pointer-events-auto fixed inset-0 z-[1000] bg-[color:color-mix(in_srgb,var(--cs-primary)_55%,transparent)]"
                 aria-hidden
-                onClick={() => setMobileOpen(false)}
+                onClick={closeMobileMenu}
               />
               <div
                 ref={mobileDrawerRef}
@@ -486,7 +542,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <p className="text-sm font-bold text-[var(--cs-primary)]">{content.brand.name}</p>
                   <button
                     type="button"
-                    onClick={() => setMobileOpen(false)}
+                    onClick={closeMobileMenu}
                     className="rounded-md border border-[var(--cs-border)] px-3 py-1.5 text-sm text-[var(--cs-muted)]"
                   >
                     Close
@@ -505,7 +561,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                           <Link
                             href={getNavHref(item)}
                             className="pointer-events-auto block rounded-md border border-[var(--cs-border)] px-4 py-3 text-sm font-normal text-[var(--cs-primary-2)]"
-                            onClick={() => setMobileOpen(false)}
+                            onClick={closeMobileMenu}
                           >
                             {item.label}
                           </Link>
@@ -541,7 +597,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                                     <li key={link.label} className="pointer-events-auto">
                                       <Link
                                         href={link.href}
-                                        onClick={() => setMobileOpen(false)}
+                                        onClick={closeMobileMenu}
                                         className="pointer-events-auto block rounded-md px-2 py-2 text-sm text-[var(--cs-muted)] transition hover:bg-[var(--cs-accent-2)]"
                                       >
                                         {link.label}

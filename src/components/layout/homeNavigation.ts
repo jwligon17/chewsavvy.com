@@ -27,3 +27,29 @@ export const madeForOptions = [
     href: "/made-for/vendors",
   },
 ];
+
+export type HomeMobileNavItem = {
+  label: string;
+  href?: string;
+  hasChevron?: boolean;
+  children?: Array<{
+    label: string;
+    href: string;
+  }>;
+};
+
+export const homeMobileNavItems: HomeMobileNavItem[] = [
+  {
+    label: "Made for",
+    hasChevron: true,
+    children: madeForOptions.map((option) => ({
+      label: option.title,
+      href: option.href,
+    })),
+  },
+  ...homeDesktopNavItems.map((item) => ({
+    label: item.label,
+    href: item.href,
+    hasChevron: item.hasChevron,
+  })),
+];
