@@ -329,13 +329,13 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
         {mobileOpen ? (
           <div className="lg:hidden">
             <div
-              className="fixed inset-0 z-[1000] bg-black/60"
+              className="fixed inset-0 z-[1000] bg-[#0B0B0D]/80"
               aria-hidden
               onClick={closeMobileMenu}
             />
             <div
               id="mobile-home-nav"
-              className="fixed inset-x-0 top-[var(--cs-nav-height)] z-[1100] bg-[#0B0B0D] px-4 pb-4 pt-2 sm:px-6"
+              className="fixed inset-x-0 bottom-0 top-[var(--cs-nav-height)] z-[1100] overflow-y-auto bg-[#0B0B0D] px-4 pb-4 pt-2 text-white sm:px-6"
               onClick={(event) => event.stopPropagation()}
             >
               <ul className="space-y-1 text-white">
@@ -366,7 +366,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                         <li key={option.title}>
                           <Link
                             href={option.href}
-                            className="block px-2 py-2 text-sm text-white no-underline transition-colors hover:text-white/85"
+                            className="text-white transition-opacity hover:opacity-80"
                             onClick={closeMobileMenu}
                           >
                             {option.title}
@@ -380,7 +380,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="group inline-flex min-h-[40px] items-center no-underline text-sm text-white visited:text-white transition-colors hover:text-white/85"
+                      className="text-white transition-opacity hover:opacity-80"
                       onClick={closeMobileMenu}
                     >
                       {item.label}
@@ -391,14 +391,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               <div className="mt-3 flex flex-wrap gap-3">
                 <Link
                   href="/coming-soon"
-                  className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-white visited:text-white hover:text-white/85"
+                  className="text-white transition-opacity hover:opacity-80"
                   onClick={closeMobileMenu}
                 >
                   Vendor Portal
                 </Link>
                 <Link
                   href="/coming-soon"
-                  className="inline-flex min-h-[40px] items-center rounded-[10px] bg-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] hover:text-[#0B0B0D]"
+                  className="text-white transition-opacity hover:opacity-80"
                   onClick={closeMobileMenu}
                 >
                   Download Our App
@@ -541,14 +541,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
         ? createPortal(
             <div className="lg:hidden">
               <div
-                className="pointer-events-auto fixed inset-0 z-[1000] bg-[color:color-mix(in_srgb,var(--cs-primary)_55%,transparent)]"
+                className="pointer-events-auto fixed inset-0 z-[1000] bg-[#0B0B0D]/80"
                 aria-hidden
                 onClick={closeMobileMenu}
               />
               <div
                 ref={mobileDrawerRef}
                 id="mobile-nav-drawer"
-                className="pointer-events-auto fixed inset-y-0 right-0 z-[1100] w-full max-w-sm overflow-y-auto border-l border-[var(--cs-border)] bg-[var(--cs-surface)] p-5 shadow-xl"
+                className="pointer-events-auto fixed inset-0 z-[1100] w-full overflow-y-auto bg-[#0B0B0D] p-5 text-white shadow-xl"
                 role="dialog"
                 aria-modal="true"
                 aria-label="Mobile navigation"
@@ -556,11 +556,11 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                 onPointerDown={(event) => event.stopPropagation()}
               >
                 <div className="mb-6 flex items-center justify-between">
-                  <p className="text-sm font-bold text-[var(--cs-primary)]">{content.brand.name}</p>
+                  <p className="text-sm font-bold text-white">{content.brand.name}</p>
                   <button
                     type="button"
                     onClick={closeMobileMenu}
-                    className="rounded-md border border-[var(--cs-border)] px-3 py-1.5 text-sm text-[var(--cs-muted)]"
+                    className="rounded-md border border-white/30 px-3 py-1.5 text-sm text-white hover:text-white/85"
                   >
                     Close
                   </button>
@@ -577,7 +577,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                         <li key={item.label} className="pointer-events-auto">
                           <Link
                             href={getNavHref(item)}
-                            className="pointer-events-auto block rounded-md border border-[var(--cs-border)] px-4 py-3 text-sm font-normal text-[var(--cs-primary-2)]"
+                            className="text-white transition-opacity hover:opacity-80"
                             onClick={closeMobileMenu}
                           >
                             {item.label}
@@ -589,14 +589,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                     return (
                       <li
                         key={item.label}
-                        className="pointer-events-auto rounded-lg border border-[var(--cs-border)]"
+                        className="pointer-events-auto rounded-lg border border-white/20"
                       >
                         <button
                           type="button"
                           aria-expanded={isOpen}
                           aria-controls={accordionId}
                           onClick={() => setOpenMobileIndex(isOpen ? null : index)}
-                          className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-bold text-[var(--cs-primary)]"
+                          className="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-bold text-white hover:text-white/85"
                         >
                           <span>{item.label}</span>
                           <span aria-hidden>{isOpen ? "−" : "+"}</span>
@@ -606,7 +606,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                           <div id={accordionId} className="space-y-4 px-4 pb-4">
                             {groups.map((group) => (
                               <div key={group.title}>
-                                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-[var(--cs-accent)]">
+                                <p className="mb-2 text-xs font-bold uppercase tracking-wider text-white/80">
                                   {group.title}
                                 </p>
                                 <ul className="pointer-events-auto space-y-1">
@@ -615,7 +615,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                                       <Link
                                         href={link.href}
                                         onClick={closeMobileMenu}
-                                        className="pointer-events-auto block rounded-md px-2 py-2 text-sm text-[var(--cs-muted)] transition hover:bg-[var(--cs-accent-2)]"
+                                        className="text-white transition-opacity hover:opacity-80"
                                       >
                                         {link.label}
                                       </Link>
