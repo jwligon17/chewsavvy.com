@@ -53,6 +53,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   const wrapperRef = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const mobileDrawerRef = useRef<HTMLDivElement | null>(null);
+  const prevPath = useRef(pathname);
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const panelId = useId();
   const madeForPanelId = useId();
@@ -61,11 +62,9 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
     function onPointerDown(event: PointerEvent) {
       const target = event.target as Node;
 
-      if (mobileOpen && mobileDrawerRef.current?.contains(target)) return;
       if (wrapperRef.current?.contains(target)) return;
 
       setOpenDesktopIndex(null);
-      setMobileOpen(false);
     }
 
     function onKeyDown(event: KeyboardEvent) {
@@ -85,7 +84,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
       window.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [mobileOpen]);
+  }, []);
 
   useEffect(() => {
     if (openDesktopIndex === null) return;
@@ -174,14 +173,16 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   };
 
   useEffect(() => {
-    if (!mobileOpen) return;
-    const timer = window.setTimeout(() => {
-      closeMobileMenu();
-    }, 0);
-    return () => {
-      window.clearTimeout(timer);
-    };
-  }, [pathname, mobileOpen]);
+    if (prevPath.current !== pathname) {
+      prevPath.current = pathname;
+      const timer = window.setTimeout(() => {
+        closeMobileMenu();
+      }, 0);
+      return () => {
+        window.clearTimeout(timer);
+      };
+    }
+  }, [pathname]);
 
   if (isHomeDark) {
     return (
@@ -277,9 +278,9 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
             type="button"
             aria-expanded={mobileOpen}
             aria-controls="mobile-home-nav"
-            onClick={() => {
+            onClick={(event) => {
+              event.stopPropagation();
               setMobileOpen((value) => !value);
-              setOpenMobileIndex(null);
             }}
             className="ml-auto inline-flex shrink-0 items-center rounded-md border border-white/20 px-3 py-2 text-sm font-normal text-[#E6E6EA] lg:hidden"
           >
@@ -320,75 +321,92 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
         ) : null}
 
         {mobileOpen ? (
-          <div
-            id="mobile-home-nav"
-            className="bg-[#0B0B0D] px-4 pb-4 pt-2 lg:hidden sm:px-6"
-          >
-            <ul className="space-y-1">
-              <li className="rounded-md border border-white/10">
+          <div className="lg:hidden">
+            <div
+              className="fixed inset-0 z-[1000] bg-black/60"
+              aria-hidden
+              onClick={closeMobileMenu}
+            />
+            <div
+              id="mobile-home-nav"
+              className="fixed inset-x-0 top-[var(--cs-nav-height)] z-[1100] bg-[#0B0B0D] px-4 pb-4 pt-2 sm:px-6"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mb-3 flex justify-end">
                 <button
                   type="button"
-                  aria-expanded={openMobileIndex === 0}
-                  aria-controls="mobile-home-made-for"
-                  onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
-                  className="flex min-h-[40px] w-full items-center justify-between px-3 text-left text-sm text-white"
+                  onClick={closeMobileMenu}
+                  className="inline-flex min-h-[40px] items-center rounded-[10px] border border-white/20 px-3 text-sm font-medium text-white/85"
                 >
-                  <span>Made for</span>
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 10 6"
-                    className={cn(
-                      "h-[6px] w-[10px] text-current transition-transform",
-                      openMobileIndex === 0 && "rotate-180",
-                    )}
-                    fill="none"
-                  >
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
-                  </svg>
+                  Close
                 </button>
-                {openMobileIndex === 0 ? (
-                  <ul id="mobile-home-made-for" className="space-y-1 px-3 pb-3">
-                    {mobileMadeForOptions.map((option) => (
-                      <li key={option.title}>
-                        <Link
-                          href={option.href}
-                          className="block rounded-md px-2 py-2 text-sm text-white/85 no-underline transition-colors hover:text-white"
-                          onClick={closeMobileMenu}
-                        >
-                          {option.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-              {mobileTopLevelLinks.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="group inline-flex min-h-[40px] items-center no-underline text-sm text-white visited:text-white transition-colors hover:text-white"
-                    onClick={closeMobileMenu}
+              </div>
+              <ul className="space-y-1">
+                <li className="rounded-md border border-white/10">
+                  <button
+                    type="button"
+                    aria-expanded={openMobileIndex === 0}
+                    aria-controls="mobile-home-made-for"
+                    onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
+                    className="flex min-h-[40px] w-full items-center justify-between px-3 text-left text-sm text-white"
                   >
-                    {item.label}
-                  </Link>
+                    <span>Made for</span>
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 10 6"
+                      className={cn(
+                        "h-[6px] w-[10px] text-current transition-transform",
+                        openMobileIndex === 0 && "rotate-180",
+                      )}
+                      fill="none"
+                    >
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
+                    </svg>
+                  </button>
+                  {openMobileIndex === 0 ? (
+                    <ul id="mobile-home-made-for" className="space-y-1 px-3 pb-3">
+                      {mobileMadeForOptions.map((option) => (
+                        <li key={option.title}>
+                          <Link
+                            href={option.href}
+                            className="block rounded-md px-2 py-2 text-sm text-white/85 no-underline transition-colors hover:text-white"
+                            onClick={closeMobileMenu}
+                          >
+                            {option.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </li>
-              ))}
-            </ul>
-            <div className="mt-3 flex flex-wrap gap-3">
-              <Link
-                href="/coming-soon"
-                className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#E7CA7D] visited:text-[#E7CA7D] hover:text-[#E7CA7D]"
-                onClick={closeMobileMenu}
-              >
-                Vendor Portal
-              </Link>
-              <Link
-                href="/coming-soon"
-                className="inline-flex min-h-[40px] items-center rounded-[10px] bg-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] hover:text-[#0B0B0D]"
-                onClick={closeMobileMenu}
-              >
-                Download Our App
-              </Link>
+                {mobileTopLevelLinks.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="group inline-flex min-h-[40px] items-center no-underline text-sm text-white visited:text-white transition-colors hover:text-white"
+                      onClick={closeMobileMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-3 flex flex-wrap gap-3">
+                <Link
+                  href="/coming-soon"
+                  className="inline-flex min-h-[40px] items-center rounded-[10px] border border-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#E7CA7D] visited:text-[#E7CA7D] hover:text-[#E7CA7D]"
+                  onClick={closeMobileMenu}
+                >
+                  Vendor Portal
+                </Link>
+                <Link
+                  href="/coming-soon"
+                  className="inline-flex min-h-[40px] items-center rounded-[10px] bg-[#E7CA7D] px-4 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] hover:text-[#0B0B0D]"
+                  onClick={closeMobileMenu}
+                >
+                  Download Our App
+                </Link>
+              </div>
             </div>
           </div>
         ) : null}
@@ -464,9 +482,9 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
           type="button"
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav-drawer"
-          onClick={() => {
+          onClick={(event) => {
+            event.stopPropagation();
             setMobileOpen((value) => !value);
-            setOpenMobileIndex(null);
           }}
           className="ml-auto inline-flex shrink-0 items-center rounded-md border border-[var(--cs-border)] px-3 py-2 text-sm font-normal text-[var(--cs-primary-2)] lg:hidden"
         >
@@ -531,6 +549,8 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Mobile navigation"
+                onClick={(event) => event.stopPropagation()}
+                onPointerDown={(event) => event.stopPropagation()}
               >
                 <div className="mb-6 flex items-center justify-between">
                   <p className="text-sm font-bold text-[var(--cs-primary)]">{content.brand.name}</p>

@@ -37,6 +37,48 @@ npm run lint
 npm run build
 ```
 
+## Deployment (Vercel)
+
+Set these in Vercel Project Settings -> Environment Variables:
+
+```bash
+RESEND_API_KEY=your_resend_api_key
+```
+
+Optional:
+
+```bash
+CONTACT_FROM_EMAIL=Chewsavvy <noreply@example.com>
+```
+
+### Test Contact API Locally
+
+1. Add env vars to `.env.local`:
+
+```bash
+RESEND_API_KEY=your_resend_api_key
+CONTACT_FROM_EMAIL=Chewsavvy <noreply@example.com>
+```
+
+2. Start the app:
+
+```bash
+npm run dev
+```
+
+3. Send a test request:
+
+```bash
+curl -sS -X POST http://localhost:3000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Test User",
+    "email": "test@example.com",
+    "organization": "Chewsavvy QA",
+    "message": "This is a local contact endpoint test."
+  }'
+```
+
 ## Next.js Docs
 
 - [Next.js Documentation](https://nextjs.org/docs)

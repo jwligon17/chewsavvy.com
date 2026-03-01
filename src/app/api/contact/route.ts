@@ -13,6 +13,10 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function toTrimmedString(value: unknown) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
 function escapeHtml(input: string) {
   return input
     .replaceAll("&", "&amp;")
@@ -50,13 +54,14 @@ function isRateLimited(ip: string) {
 
 export async function POST(req: Request) {
   try {
-    if (!process.env.RESEND_API_KEY) {
+    const resendApiKey = process.env.RESEND_API_KEY?.trim();
+    if (!resendApiKey) {
       return NextResponse.json(
         { ok: false, error: "Missing RESEND_API_KEY on server." },
         { status: 500 }
       );
     }
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(resendApiKey);
 
     const ip = getClientIp(req);
     if (isRateLimited(ip)) {
@@ -74,10 +79,10 @@ export async function POST(req: Request) {
       );
     }
 
-    const name = (body?.name ?? "").trim();
-    const email = (body?.email ?? "").trim();
-    const organization = (body?.organization ?? "").trim();
-    const message = (body?.message ?? "").trim();
+    const name = toTrimmedString(body?.name);
+    const email = toTrimmedString(body?.email);
+    const organization = toTrimmedString(body?.organization);
+    const message = toTrimmedString(body?.message);
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -136,7 +141,7 @@ export async function POST(req: Request) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
+      console.error("Resend error while sending contact email.");
       return NextResponse.json(
         { ok: false, error: "Email failed to send." },
         { status: 500 }
@@ -145,7 +150,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("Contact API error:", err);
+    console.error(
+      "Contact API error:",
+      err instanceof Error ? err.message : "Unknown error"
+    );
     return NextResponse.json(
       { ok: false, error: "Server error." },
       { status: 500 }
