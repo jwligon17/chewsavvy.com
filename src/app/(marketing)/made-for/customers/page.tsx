@@ -12,10 +12,10 @@ export default function MadeForCustomersPage() {
   const TEXT_PR = 6;
 
   return (
-    <section className="relative overflow-visible bg-[#0B0B0D] text-white md:overflow-x-hidden">
+    <section className="relative isolate overflow-visible bg-[#0B0B0D] text-white md:isolation-auto md:overflow-x-hidden">
       <div className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl items-start gap-10 px-4 pb-8 pt-4 sm:px-6 sm:pb-16 sm:pt-6 lg:grid-cols-[1.05fr_1.15fr] lg:gap-16 lg:px-8 lg:pb-16 lg:pt-6">
-        <div className="relative mx-auto flex min-w-0 w-full max-w-[520px] self-center items-center justify-center overflow-visible lg:mx-0 lg:max-w-[520px] lg:-mt-2 lg:justify-start lg:-ml-4">
-          <div className="relative h-[520px] w-[420px] origin-left overflow-hidden sm:h-[620px] sm:w-[520px] lg:h-[680px] lg:w-[520px] lg:translate-x-2 lg:translate-y-10">
+        <div className="relative z-0 mx-auto flex min-w-0 w-full max-w-[520px] self-center items-center justify-center overflow-visible md:z-auto lg:mx-0 lg:max-w-[520px] lg:-mt-2 lg:justify-start lg:-ml-4">
+          <div className="relative isolate h-[520px] w-[420px] origin-left overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-[55%] before:bg-gradient-to-t before:from-[#0B0B0D] before:via-[#0B0B0D]/95 before:to-transparent before:content-[''] md:isolation-auto md:before:z-20 sm:h-[620px] sm:w-[520px] lg:h-[680px] lg:w-[520px] lg:translate-x-2 lg:translate-y-10">
             <Image
               src="/dealphone-v2.png"
               alt="Chewsavvy app on phone"
@@ -33,15 +33,11 @@ export default function MadeForCustomersPage() {
                 maskSize: "100% 100%",
               }}
             />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[55%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent"
-            />
           </div>
         </div>
 
         <div
-          className="relative z-10 translate-y-[-120px] ml-auto flex min-w-0 w-full max-w-[760px] flex-col items-end text-right md:translate-y-0 lg:max-w-[760px] lg:justify-self-end lg:pr-6"
+          className="relative z-10 translate-y-[-120px] ml-auto flex min-w-0 w-full max-w-[760px] flex-col items-end text-right md:z-auto md:translate-y-0 lg:max-w-[760px] lg:justify-self-end lg:pr-6"
           style={{ ["--text-pr" as string]: `${TEXT_PR * 0.25}rem` }}
         >
           <div className="ml-auto w-full max-w-[860px] text-right">
