@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-[#0B0B0D] text-white">
-        <div className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl items-center gap-10 px-4 pb-14 pt-6 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:gap-20 lg:px-8 lg:pb-20">
+      <section className="relative overflow-visible bg-[#0B0B0D] text-white md:overflow-hidden">
+        <div className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-7xl flex-col items-center gap-10 px-4 pb-14 pt-6 sm:px-6 md:grid lg:grid-cols-[1.25fr_1fr] lg:gap-20 lg:px-8 lg:pb-20">
           {/* LEFT: bleeding phone image */}
-          <div className="relative -ml-[180px] w-[760px] max-w-none overflow-visible sm:-ml-[240px] sm:w-[900px] lg:-ml-[420px] lg:w-[1100px]">
+          <div className="relative -ml-[180px] w-[760px] max-w-none -translate-x-6 overflow-visible md:translate-x-0 sm:-ml-[240px] sm:w-[900px] lg:-ml-[420px] lg:w-[1100px]">
             <div className="relative h-[520px] w-full sm:h-[600px] lg:h-[720px]">
               <Image
                 src="/savvyfeaturephone.png"
@@ -32,7 +32,7 @@ export default function FeaturesPage() {
           </div>
 
           {/* RIGHT: text */}
-          <div className="relative flex w-full flex-col items-end text-right">
+          <div className="relative z-20 -mt-2 flex w-full flex-col items-end pt-0 text-right md:mt-0">
             <p className="mb-6 text-right text-sm font-light tracking-wide text-white/60">
               Better Deals
             </p>
