@@ -122,9 +122,9 @@ export default function FeaturesPage() {
         </div>
       </section>
 
-      <section className="bg-[#0B0B0D] text-white">
+      <section className="overflow-visible bg-[#0B0B0D] text-white md:overflow-hidden">
         <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-8 lg:py-24">
-          <div className="relative order-1 flex min-h-[420px] items-center justify-center sm:min-h-[520px] lg:-ml-10">
+          <div className="relative z-10 order-1 flex min-h-[420px] items-center justify-center sm:min-h-[520px] md:z-auto lg:-ml-10">
             <div className="relative h-[420px] w-full max-w-[360px] sm:h-[520px] sm:max-w-[420px] lg:h-[640px] lg:max-w-[460px]">
               <Image
                 src="/dealfeaturephone.png"
@@ -135,12 +135,12 @@ export default function FeaturesPage() {
               />
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[55%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent"
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[55%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent md:z-20"
               />
             </div>
           </div>
 
-          <div className="order-2 flex flex-col text-right lg:pl-6">
+          <div className="relative z-30 order-2 flex translate-y-[-110px] flex-col text-right md:z-auto md:translate-y-0 lg:pl-6">
             <h2 className="text-[clamp(2rem,4vw,3.4rem)] font-light leading-[1.08] tracking-tight">
               <span className="block">
                 <span className="text-[#E7CA7D]">SavvyScore</span>: a

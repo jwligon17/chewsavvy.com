@@ -61,7 +61,10 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
                   className="h-10 w-auto sm:h-12 lg:h-14 [filter:brightness(0)_invert(1)_contrast(1.15)]"
                 />
               </Link>
-              <nav aria-label="Footer links" className="md:justify-self-end">
+              <p className="order-1 max-w-[44ch] text-sm leading-relaxed text-white/85 md:hidden md:order-none">
+                Curating the best deals and a better experience from app, to table, to &quot;time for the check&quot;.
+              </p>
+              <nav aria-label="Footer links" className="order-2 md:order-none md:justify-self-end">
                 <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#A7A7AE] md:justify-end lg:flex-nowrap">
                   {homeLinks.map((link) => (
                     <li key={link.label}>
@@ -76,20 +79,20 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
                 </ul>
               </nav>
 
-              <p className="max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5]">
+              <p className="hidden max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5] md:block">
                 Curating the best deals and a better experience
               </p>
               <a
                 href="mailto:admin@chewsavvy.com"
-                className="text-sm leading-relaxed text-white/80 transition-colors hover:text-white md:justify-self-end"
+                className="order-3 text-sm leading-relaxed text-white/80 transition-colors hover:text-white md:order-none md:justify-self-end"
               >
                 admin@chewsavvy.com
               </a>
 
-              <p className="max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5]">
+              <p className="hidden max-w-[44ch] text-sm leading-relaxed text-[#CFCFD5] md:block">
                 from app, to table, to &quot;time for the check&quot;.
               </p>
-              <p className="text-sm leading-relaxed text-white/65 md:justify-self-end">
+              <p className="order-4 text-sm leading-relaxed text-white/65 md:order-none md:justify-self-end">
                 A Texas Limited Liability Corporation
               </p>
             </div>
