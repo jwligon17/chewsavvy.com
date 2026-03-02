@@ -25,7 +25,7 @@ export default function MadeForEmployeesPage() {
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-0 max-w-7xl items-start justify-center px-6 pt-0 pb-10 sm:px-8 md:min-h-[calc(100vh-76px)] md:items-center md:pt-8 lg:px-12">
-          <div className="relative z-10 mx-auto -mt-8 flex w-full max-w-3xl flex-col items-center text-center md:mt-0 lg:-translate-y-6">
+          <div className="relative z-10 mx-auto mt-0 flex w-full max-w-3xl flex-col items-center text-center md:mt-0 lg:-translate-y-6">
             <p className="text-sm font-light tracking-wide text-white/60">Made for Employees</p>
 
             <h1 className="mt-4 bg-gradient-to-r from-[#61AC3E] to-[#E7CA7D] bg-clip-text text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-[0.98] text-transparent">
@@ -52,29 +52,25 @@ export default function MadeForEmployeesPage() {
               </Link>
             </div>
 
-            <div className="md:hidden overflow-visible">
-              <div className="mt-6 -mx-6 flex gap-4">
-                <div className="relative w-1/2 overflow-hidden rounded-2xl border border-white/10 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
-                  <div className="relative aspect-[3/4] w-full">
-                    <Image
-                      src="/FOH.png?v=4"
-                      alt="Front-of-house team member"
-                      fill
-                      className="h-full w-full object-cover"
-                      sizes="50vw"
-                    />
-                  </div>
+            <div className="mx-auto mt-8 w-[108%] -translate-x-[4%] md:hidden">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl ring-1 ring-white/10">
+                  <Image
+                    src="/FOH.png?v=4"
+                    alt="Front-of-house team member"
+                    fill
+                    className="object-cover"
+                    sizes="54vw"
+                  />
                 </div>
-                <div className="relative w-1/2 overflow-hidden rounded-2xl border border-white/10 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
-                  <div className="relative aspect-[3/4] w-full">
-                    <Image
-                      src="/BOH.png?v=4"
-                      alt="Back-of-house team member"
-                      fill
-                      className="h-full w-full object-cover"
-                      sizes="50vw"
-                    />
-                  </div>
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl ring-1 ring-white/10">
+                  <Image
+                    src="/BOH.png?v=4"
+                    alt="Back-of-house team member"
+                    fill
+                    className="object-cover"
+                    sizes="54vw"
+                  />
                 </div>
               </div>
             </div>
