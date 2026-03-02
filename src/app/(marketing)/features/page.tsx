@@ -79,8 +79,8 @@ export default function FeaturesPage() {
       </section>
 
       <section className="bg-[#0B0B0D] text-white">
-        <div className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 md:grid lg:grid-cols-[1.05fr_1fr] lg:gap-20 lg:px-8 lg:py-28">
-          <div className="max-w-2xl">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 sm:py-24 md:grid-cols-2 lg:gap-20 lg:px-8 lg:py-28">
+          <div className="order-2 max-w-2xl md:order-1">
             <h2 className="bg-[linear-gradient(90deg,#2E5BFF_0%,#E7CA7D_100%)] bg-clip-text text-left text-[clamp(2.1rem,4vw,3.5rem)] font-light leading-[1.08] tracking-tight text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
               Attention to detail matters. Period.
             </h2>
@@ -108,7 +108,7 @@ export default function FeaturesPage() {
             </div>
           </div>
 
-          <div className="relative flex min-h-[420px] items-center justify-center sm:min-h-[520px] lg:translate-x-6">
+          <div className="order-1 relative flex min-h-[420px] items-center justify-center sm:min-h-[520px] md:order-2 lg:translate-x-6">
             <div className="relative h-[420px] w-full max-w-[420px] sm:h-[520px] sm:max-w-[520px] lg:h-[620px] lg:max-w-[620px]">
               <Image
                 src="/mapfeaturephone.png"
