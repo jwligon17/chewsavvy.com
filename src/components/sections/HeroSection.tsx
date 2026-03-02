@@ -89,7 +89,7 @@ export function HeroSection() {
 
             <div className="mt-6 flex justify-end sm:mt-6">
               <Link
-                href="#download"
+                href="/coming-soon"
                 className="inline-flex min-h-[48px] items-center rounded-xl bg-white px-7 py-3 text-[0.95rem] font-semibold text-[#0B0B0D] shadow-[0_10px_24px_rgba(0,0,0,0.35)] transition-all duration-200 hover:bg-white/95"
               >
                 Download Our App

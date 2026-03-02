@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export function MadeForSection() {
-  const vendorHref = "#support";
+  const vendorHref = "/coming-soon";
 
   return (
     <section id="made-for" className="bg-[#0B0B0D] px-4 pb-10 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">

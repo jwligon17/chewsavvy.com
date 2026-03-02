@@ -268,7 +268,7 @@ export const chewsavvyContent: ChewsavvyContent = {
     },
     {
       label: "Download Now",
-      href: "/#download",
+      href: "/coming-soon",
     },
     {
       label: "How it Works",

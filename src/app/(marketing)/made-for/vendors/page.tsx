@@ -32,7 +32,7 @@ export default function MadeForVendorsPage() {
 
           <div className="mt-10">
             <Link
-              href="/vendor"
+              href="/coming-soon"
               className="inline-flex min-h-[48px] items-center rounded-full border border-[#E7CA7D] px-8 text-sm font-medium tracking-wide !text-white transition-colors duration-200 hover:!text-white hover:bg-[#E7CA7D]/10"
             >
               Vendor Portal

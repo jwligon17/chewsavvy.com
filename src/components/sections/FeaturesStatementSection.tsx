@@ -23,13 +23,13 @@ export function FeaturesStatementSection() {
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
-            href="#support"
+            href="/coming-soon"
             className="inline-flex min-h-[44px] items-center justify-center rounded-[10px] border border-[#E7CA7D] bg-transparent px-5 text-sm font-medium text-white !text-white visited:text-white hover:text-white transition-colors hover:bg-[#E7CA7D]/10"
           >
             Vendor Portal
           </Link>
           <Link
-            href="#download"
+            href="/coming-soon"
             className="inline-flex min-h-[44px] items-center justify-center rounded-[10px] bg-[#E7CA7D] px-5 text-sm font-medium text-[#0B0B0D] transition-colors hover:bg-[#f2d894]"
           >
             Download Our App

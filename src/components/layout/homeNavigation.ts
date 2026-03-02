@@ -4,6 +4,8 @@ export type HomeNavLink = {
   hasChevron?: boolean;
 };
 
+export const CTA_COMING_SOON_HREF = "/coming-soon";
+
 export const homeDesktopNavItems: HomeNavLink[] = [
   { label: "Features", href: "/features", hasChevron: true },
   { label: "FAQ", href: "/faq", hasChevron: false },

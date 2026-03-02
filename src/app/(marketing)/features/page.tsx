@@ -68,7 +68,7 @@ export default function FeaturesPage() {
 
             <div className="mt-10 flex justify-end">
               <Link
-                href="#download"
+                href="/coming-soon"
                 className="inline-flex min-h-[44px] items-center rounded-lg bg-white px-5 text-sm font-medium text-[#0B0B0D] shadow-[0_10px_30px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-0.5"
               >
                 Download Our App
@@ -100,7 +100,7 @@ export default function FeaturesPage() {
 
             <div className="mt-10">
               <Link
-                href="#download"
+                href="/coming-soon"
                 className="inline-flex min-h-[44px] items-center rounded-lg bg-white px-5 text-sm font-medium text-[#0B0B0D] shadow-[0_10px_30px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-0.5"
               >
                 Download Our App
@@ -161,7 +161,7 @@ export default function FeaturesPage() {
 
             <div className="mt-10">
               <Link
-                href="#download"
+                href="/coming-soon"
                 className="ml-auto inline-flex min-h-[42px] items-center rounded-md bg-white px-5 text-sm font-medium text-[#0B0B0D] shadow-[0_10px_24px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-0.5"
               >
                 Download Our App

@@ -68,7 +68,7 @@ export default function MadeForCustomersPage() {
 
             <div className="mt-8 flex w-full justify-end">
               <Link
-                href="#download"
+                href="/coming-soon"
                 className="inline-flex min-h-[48px] items-center rounded-full bg-white px-7 text-sm font-semibold tracking-[0.01em] text-[#0B0B0D] no-underline shadow-[0_8px_24px_rgba(255,255,255,0.16)] transition-transform duration-200 hover:-translate-y-0.5 hover:text-[#0B0B0D]"
               >
                 Download Our App
