@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   return (
     <>
-      <section className="relative overflow-visible bg-[#0B0B0D] text-white md:overflow-hidden">
+      <section className="relative isolate overflow-visible bg-[#0B0B0D] text-white md:overflow-hidden">
         <div className="mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-7xl flex-col items-center gap-10 px-4 pb-14 pt-6 sm:px-6 md:grid lg:grid-cols-[1.25fr_1fr] lg:gap-20 lg:px-8 lg:pb-20">
           {/* LEFT: bleeding phone image */}
-          <div className="relative -ml-[180px] w-[760px] max-w-none -translate-x-6 overflow-visible md:translate-x-0 sm:-ml-[240px] sm:w-[900px] lg:-ml-[420px] lg:w-[1100px]">
+          <div className="relative z-10 -ml-[180px] w-[760px] max-w-none -translate-x-6 overflow-visible md:translate-x-0 sm:-ml-[240px] sm:w-[900px] lg:-ml-[420px] lg:w-[1100px]">
             <div className="relative h-[520px] w-full sm:h-[600px] lg:h-[720px]">
               <Image
                 src="/savvyfeaturephone.png"
@@ -26,13 +26,13 @@ export default function FeaturesPage() {
               {/* Strong fade into background (bottom) */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[62%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent"
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[62%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent md:z-20"
               />
             </div>
           </div>
 
           {/* RIGHT: text */}
-          <div className="relative z-20 -mt-2 flex w-full flex-col items-end pt-0 text-right md:mt-0">
+          <div className="relative z-30 -mt-2 flex w-full translate-y-[-80px] flex-col items-end pt-0 text-right md:mt-0 md:translate-y-0 md:z-20">
             <p className="mb-6 text-right text-sm font-light tracking-wide text-white/60">
               Better Deals
             </p>
