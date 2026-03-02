@@ -41,11 +41,11 @@ export default function MadeForCustomersPage() {
         </div>
 
         <div
-          className="relative z-10 translate-y-[-90px] ml-auto flex min-w-0 w-full max-w-[760px] flex-col items-end text-right md:translate-y-0 lg:max-w-[760px] lg:justify-self-end lg:pr-6"
+          className="relative z-10 translate-y-[-120px] ml-auto flex min-w-0 w-full max-w-[760px] flex-col items-end text-right md:translate-y-0 lg:max-w-[760px] lg:justify-self-end lg:pr-6"
           style={{ ["--text-pr" as string]: `${TEXT_PR * 0.25}rem` }}
         >
           <div className="ml-auto w-full max-w-[860px] text-right">
-            <p className="mb-6 w-full text-sm font-light tracking-wide text-white/60">Made for Customers</p>
+            <p className="mb-6 block w-full text-sm font-light tracking-wide text-white/60 md:block">Made for Customers</p>
 
             <h1 className="w-full break-normal text-[clamp(2rem,4vw,3.6rem)] font-light leading-[1.15] tracking-normal text-white lg:text-[clamp(2.4rem,3.6vw,3.25rem)]">
               <span className="block">The deal app designed around</span>
