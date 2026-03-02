@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function MadeForEmployeesPage() {
   return (
-    <section className="relative overflow-x-hidden bg-[#0B0B0D] text-white">
+    <section className="relative overflow-x-visible bg-[#0B0B0D] text-white md:overflow-x-hidden">
       <div className="relative min-h-[calc(100vh-76px)]">
         <div className="absolute left-0 top-[46%] z-0 hidden h-[520px] w-[340px] -translate-x-[40%] -translate-y-1/2 lg:block lg:h-[620px] lg:w-[420px] xl:h-[680px] xl:w-[460px]">
           <div className="relative h-full w-full rounded-2xl">
@@ -24,8 +24,8 @@ export default function MadeForEmployeesPage() {
           </div>
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] max-w-7xl items-center justify-center px-6 pt-8 pb-10 sm:px-8 lg:px-12">
-          <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center text-center lg:-translate-y-6">
+        <div className="relative z-10 mx-auto flex min-h-0 max-w-7xl items-start justify-center px-6 pt-0 pb-10 sm:px-8 md:min-h-[calc(100vh-76px)] md:items-center md:pt-8 lg:px-12">
+          <div className="relative z-10 mx-auto -mt-8 flex w-full max-w-3xl flex-col items-center text-center md:mt-0 lg:-translate-y-6">
             <p className="text-sm font-light tracking-wide text-white/60">Made for Employees</p>
 
             <h1 className="mt-4 bg-gradient-to-r from-[#61AC3E] to-[#E7CA7D] bg-clip-text text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-[0.98] text-transparent">
@@ -50,6 +50,33 @@ export default function MadeForEmployeesPage() {
               >
                 Vendor Portal
               </Link>
+            </div>
+
+            <div className="md:hidden overflow-visible">
+              <div className="mt-6 -mx-6 flex gap-4">
+                <div className="relative w-1/2 overflow-hidden rounded-2xl border border-white/10 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
+                  <div className="relative aspect-[3/4] w-full">
+                    <Image
+                      src="/FOH.png?v=4"
+                      alt="Front-of-house team member"
+                      fill
+                      className="h-full w-full object-cover"
+                      sizes="50vw"
+                    />
+                  </div>
+                </div>
+                <div className="relative w-1/2 overflow-hidden rounded-2xl border border-white/10 shadow-[0_16px_38px_rgba(0,0,0,0.45)]">
+                  <div className="relative aspect-[3/4] w-full">
+                    <Image
+                      src="/BOH.png?v=4"
+                      alt="Back-of-house team member"
+                      fill
+                      className="h-full w-full object-cover"
+                      sizes="50vw"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
