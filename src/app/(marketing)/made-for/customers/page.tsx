@@ -44,26 +44,40 @@ export default function MadeForCustomersPage() {
             <p className="mb-6 block w-full text-sm font-light tracking-wide text-white/60 md:block">Made for Customers</p>
 
             <h1 className="w-full break-normal text-[clamp(2rem,4vw,3.6rem)] font-light leading-[1.15] tracking-normal text-white lg:text-[clamp(2.4rem,3.6vw,3.25rem)]">
-              <span className="block">The deal app designed around</span>
-              <span className="block">
+              <span className="hidden md:block">
+                <span className="block">The deal app designed around</span>
+                <span className="block">
+                  better food, <span className="bg-gradient-to-r from-[#2E5BFF] to-[#E7CA7D] bg-clip-text text-transparent">and you.</span>
+                </span>
+              </span>
+              <span className="md:hidden">
+                The deal app designed around
+                <br className="block md:hidden" />
                 better food, <span className="bg-gradient-to-r from-[#2E5BFF] to-[#E7CA7D] bg-clip-text text-transparent">and you.</span>
               </span>
             </h1>
 
-            <p className="mt-8 w-full text-lg leading-relaxed text-white/80">
+            <p className="mt-8 hidden w-full text-lg leading-relaxed text-white/80 md:block">
               Pick your taste profile and we&apos;ll deliver
               <br className="hidden sm:block" />
               top deals at your fingertips.
             </p>
+            <p className="mt-8 w-full text-lg leading-relaxed text-white/80 md:hidden">
+              Pick your taste profile and we&apos;ll {"deliver\u00A0top"} deals at your fingertips.
+            </p>
 
-            <p className="mt-6 w-full text-[0.98rem] leading-relaxed text-white/68 sm:text-base">
-              Deal apps don&apos;t have to feel like deal apps. We pictured an app
-              <br className="hidden sm:block" />
-              that feels premium, only has the best deals, focuses on higher
+            <p className="mt-6 hidden w-full text-[0.98rem] leading-relaxed text-white/68 sm:text-base md:block">
+              Deal apps don&apos;t have to feel like deal apps. We pictured an app that feels premium, only has the best deals, focuses on higher
               <br className="hidden sm:block" />
               quality restaurants, and is easy to use. We couldn&apos;t find one,
               <br className="hidden sm:block" />
               <strong className="font-semibold text-white"> so we just made it.</strong>
+            </p>
+            <p className="mt-6 w-full text-[0.98rem] leading-relaxed text-white/68 sm:text-base md:hidden">
+              Deal apps don&apos;t have to feel like deal apps. We pictured an app that feels premium, only has the best deals, focuses on higher quality
+              restaurants, and is easy to use. We couldn&apos;t find one,
+              <br className="block md:hidden" />
+              <strong className="font-semibold text-white">so we just made it.</strong>
             </p>
 
             <div className="mt-8 flex w-full justify-end">
