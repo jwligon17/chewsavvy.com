@@ -52,7 +52,26 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
             ) : null}
 
             <div className="mt-10 grid gap-y-3 md:grid-cols-[1fr_auto] md:items-baseline md:gap-x-8">
-              <Link href="/" className="inline-flex items-center md:mt-2" aria-label="Chewsavvy home">
+              <div className="px-4 sm:px-6 md:hidden">
+                <Link
+                  href="/"
+                  className="m-0 flex w-fit translate-x-0 items-start"
+                  aria-label="Chewsavvy home"
+                >
+                  <Image
+                    src="/chewsavvywatermark.png"
+                    alt="Chewsavvy"
+                    width={332}
+                    height={105}
+                    className="h-10 w-auto [filter:brightness(0)_invert(1)_contrast(1.15)]"
+                  />
+                </Link>
+                <p className="mt-3 max-w-[44ch] text-sm leading-relaxed text-white/85">
+                  Curating the best deals and a better experience from app, to table, to &quot;time for the check&quot;.
+                </p>
+              </div>
+
+              <Link href="/" className="hidden md:mt-2 md:inline-flex md:items-center" aria-label="Chewsavvy home">
                 <Image
                   src="/chewsavvywatermark.png"
                   alt="Chewsavvy"
@@ -61,9 +80,6 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
                   className="h-10 w-auto sm:h-12 lg:h-14 [filter:brightness(0)_invert(1)_contrast(1.15)]"
                 />
               </Link>
-              <p className="order-1 max-w-[44ch] text-sm leading-relaxed text-white/85 md:hidden md:order-none">
-                Curating the best deals and a better experience from app, to table, to &quot;time for the check&quot;.
-              </p>
               <nav aria-label="Footer links" className="order-2 md:order-none md:justify-self-end">
                 <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#A7A7AE] md:justify-end lg:flex-nowrap">
                   {homeLinks.map((link) => (
