@@ -55,7 +55,7 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
               <div className="md:hidden">
                 <Link
                   href="/"
-                  className="-translate-x-[4px] flex w-fit items-start"
+                  className="-ml-[4px] flex w-fit items-start"
                   aria-label="Chewsavvy home"
                 >
                   <Image
