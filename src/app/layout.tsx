@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/chewsavvy-favicon.png",
-    shortcut: "/chewsavvy-favicon.png",
-    apple: "/chewsavvy-favicon.png",
+    icon: "/cslogo.png",
+    shortcut: "/cslogo.png",
+    apple: "/cslogo.png",
   },
   description:
     "Chewsavvy helps shoppers discover fresh deals, redeem offers, earn stars, and climb weekly savings leaderboards.",
