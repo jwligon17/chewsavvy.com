@@ -342,18 +342,18 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               onClick={(event) => event.stopPropagation()}
             >
               <div className="-mx-4 mb-3 h-px bg-white/10 sm:-mx-6" />
-              <ul className="space-y-1.5 text-white">
+              <ul className="space-y-1 text-white">
                 <li>
-                  <button
-                    type="button"
-                    aria-expanded={openMobileIndex === 0}
-                    aria-controls="mobile-home-made-for"
-                    onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
-                    className={cn(
-                      "group inline-flex min-h-[44px] w-full items-center justify-between gap-1 text-left transition-colors hover:text-white/80",
-                      mobileTopNavClass,
-                    )}
-                  >
+                    <button
+                      type="button"
+                      aria-expanded={openMobileIndex === 0}
+                      aria-controls="mobile-home-made-for"
+                      onClick={() => setOpenMobileIndex(openMobileIndex === 0 ? null : 0)}
+                      className={cn(
+                        "group inline-flex w-full items-center justify-between gap-1 text-left visited:text-white transition-colors hover:text-white/80",
+                        mobileTopNavClass,
+                      )}
+                    >
                     <span>Made for</span>
                     <svg
                       aria-hidden
@@ -367,21 +367,26 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
                       <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.25" />
                     </svg>
                   </button>
-                  {openMobileIndex === 0 ? (
-                    <ul id="mobile-home-made-for" className="space-y-1 pb-2 pl-4">
-                      {mobileMadeForOptions.map((option) => (
-                        <li key={option.title}>
-                          <Link
-                            href={option.href}
-                            className={mobileOverlayLinkClassName}
-                            onClick={closeMobileMenu}
-                          >
-                            {option.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
+                  <ul
+                    id="mobile-home-made-for"
+                    aria-hidden={openMobileIndex !== 0}
+                    className={cn(
+                      "pl-4",
+                      openMobileIndex === 0 ? "mt-2 space-y-2" : "mt-0 space-y-0 hidden",
+                    )}
+                  >
+                    {mobileMadeForOptions.map((option) => (
+                      <li key={option.title}>
+                        <Link
+                          href={option.href}
+                          className={mobileOverlayLinkClassName}
+                          onClick={closeMobileMenu}
+                        >
+                          {option.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
                 {mobileTopLevelLinks.map((item) => (
                   <li key={item.label}>
