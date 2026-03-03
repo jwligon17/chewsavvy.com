@@ -406,14 +406,14 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
               <div className="mt-5 flex flex-col gap-3">
                 <Link
                   href={CTA_COMING_SOON_HREF}
-                  className="inline-flex items-center justify-center rounded-full border border-[var(--cs-accent)] px-5 py-3 text-sm font-medium text-white visited:text-white hover:text-white/90"
+                  className="inline-flex min-h-[44px] items-center rounded-xl border-2 border-[#E7CA7D] bg-transparent px-4 no-underline text-sm font-medium !text-white !visited:text-white transition-colors hover:bg-[#E7CA7D]/10 hover:!text-white"
                   onClick={closeMobileMenu}
                 >
                   Vendor Portal
                 </Link>
                 <Link
                   href={CTA_COMING_SOON_HREF}
-                  className="inline-flex items-center justify-center rounded-full bg-[var(--cs-accent)] px-5 py-3 text-sm font-medium"
+                  className="inline-flex min-h-[44px] items-center rounded-xl bg-[#E7CA7D] px-6 no-underline text-sm font-medium text-[#0B0B0D] visited:text-[#0B0B0D] transition-colors hover:bg-[#f2d894] hover:text-[#0B0B0D]"
                   onClick={closeMobileMenu}
                 >
                   Download Our App
