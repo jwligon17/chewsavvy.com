@@ -52,10 +52,10 @@ export function Footer({ content = chewsavvyContent }: FooterProps) {
             ) : null}
 
             <div className="mt-10 grid gap-y-3 md:grid-cols-[1fr_auto] md:items-baseline md:gap-x-8">
-              <div className="px-4 sm:px-6 md:hidden">
+              <div className="md:hidden">
                 <Link
                   href="/"
-                  className="m-0 flex w-fit translate-x-0 items-start"
+                  className="flex w-fit items-start"
                   aria-label="Chewsavvy home"
                 >
                   <Image
