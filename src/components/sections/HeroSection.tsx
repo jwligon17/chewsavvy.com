@@ -55,7 +55,11 @@ export function HeroSection() {
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[240px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/85 to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[240px] md:hidden [background:linear-gradient(to_bottom,rgba(11,11,13,0)_0%,rgba(11,11,13,0.25)_45%,rgba(11,11,13,0.65)_75%,rgba(11,11,13,1)_100%)]"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden h-[240px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/85 to-transparent md:block"
               aria-hidden
             />
           </div>
