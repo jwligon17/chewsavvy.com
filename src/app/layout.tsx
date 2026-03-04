@@ -15,7 +15,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://chewsavvy.com"),
   title: {
-    default: "Chewsavvy | Consumer Savings, Deals, and Weekly Leaderboards",
+    default: "Chewsavvy",
     template: "%s | Chewsavvy",
   },
   alternates: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   description:
     "Chewsavvy helps shoppers discover fresh deals, redeem offers, earn stars, and climb weekly savings leaderboards.",
   openGraph: {
-    title: "Chewsavvy | Consumer Savings, Deals, and Weekly Leaderboards",
+    title: "Chewsavvy",
     description:
       "Chewsavvy helps shoppers discover fresh deals, redeem offers, earn stars, and climb weekly savings leaderboards.",
     url: "https://chewsavvy.com",
@@ -37,19 +37,19 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/chewsavvy-og.png",
-        width: 2813,
-        height: 2813,
-        alt: "Chewsavvy temporary social preview image",
+        url: "/og-chewsavvy.png",
+        width: 1200,
+        height: 630,
+        alt: "Chewsavvy",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chewsavvy | Consumer Savings, Deals, and Weekly Leaderboards",
+    title: "Chewsavvy",
     description:
       "Chewsavvy helps shoppers discover fresh deals, redeem offers, earn stars, and climb weekly savings leaderboards.",
-    images: ["/chewsavvy-og.png"],
+    images: ["/og-chewsavvy.png"],
   },
 };
 
