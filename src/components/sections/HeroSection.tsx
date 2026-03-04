@@ -70,7 +70,7 @@ export function HeroSection() {
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[320px] md:hidden"
+              className="pointer-events-none absolute bottom-0 left-0 right-0 top-[40%] z-20 md:hidden"
               style={{
                 background:
                   "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0) 55%, rgba(11,11,13,0.25) 70%, rgba(11,11,13,0.65) 85%, rgba(11,11,13,1) 100%)",
