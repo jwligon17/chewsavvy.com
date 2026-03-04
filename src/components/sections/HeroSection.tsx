@@ -54,6 +54,14 @@ export function HeroSection() {
               }}
               priority
             />
+            <div
+              className="pointer-events-none absolute left-0 right-0 bottom-0 top-[68%] z-20 md:hidden"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.35) 45%, rgba(11,11,13,0.75) 75%, rgba(11,11,13,1) 100%)",
+              }}
+              aria-hidden
+            />
             <Image
               src="/csphone.png"
               alt="Chewsavvy app preview on phone"
@@ -69,16 +77,6 @@ export function HeroSection() {
               className="pointer-events-none absolute inset-x-0 top-[-20px] z-20 hidden h-[220px] bg-gradient-to-b from-[#0B0B0D]/85 via-[#0B0B0D]/35 to-transparent md:block"
               aria-hidden
             />
-            <div
-              className="pointer-events-none absolute left-0 right-0 bottom-0 top-[70%] z-20 border-2 border-fuchsia-500 md:inset-0 md:hidden md:border-0"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.25) 35%, rgba(11,11,13,0.65) 70%, rgba(11,11,13,1) 100%)",
-              }}
-              aria-hidden
-            >
-              <div className="absolute left-2 top-2 text-xs text-fuchsia-400 md:hidden">DEBUG FADE</div>
-            </div>
             <div
               className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden h-[240px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/85 to-transparent md:block"
               aria-hidden
