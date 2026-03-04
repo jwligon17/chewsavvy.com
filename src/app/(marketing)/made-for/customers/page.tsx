@@ -15,7 +15,7 @@ export default function MadeForCustomersPage() {
     <section className="relative isolate overflow-visible bg-[#0B0B0D] text-white md:isolation-auto md:overflow-x-hidden">
       <div className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl items-start gap-10 px-4 pb-8 pt-4 sm:px-6 sm:pb-16 sm:pt-6 lg:grid-cols-[1.05fr_1.15fr] lg:gap-16 lg:px-8 lg:pb-16 lg:pt-6">
         <div className="relative z-0 mx-auto flex min-w-0 w-full max-w-[520px] self-center items-center justify-center overflow-visible md:z-auto lg:mx-0 lg:max-w-[520px] lg:-mt-2 lg:justify-start lg:-ml-4">
-          <div className="relative isolate h-[520px] w-[420px] origin-left overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-[55%] before:bg-gradient-to-t before:from-[#0B0B0D] before:via-[#0B0B0D]/95 before:to-transparent before:content-[''] md:isolation-auto md:before:z-20 sm:h-[620px] sm:w-[520px] lg:h-[680px] lg:w-[520px] lg:translate-x-2 lg:translate-y-10">
+          <div className="relative isolate h-[520px] w-[420px] origin-left overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-[72%] before:bg-[linear-gradient(to_top,rgba(11,11,13,1)_0%,rgba(11,11,13,0.9)_30%,rgba(11,11,13,0.65)_55%,rgba(11,11,13,0.25)_78%,rgba(11,11,13,0)_100%)] before:content-[''] md:isolation-auto md:before:z-20 md:before:h-[55%] md:before:bg-gradient-to-t md:before:from-[#0B0B0D] md:before:via-[#0B0B0D]/95 md:before:to-transparent sm:h-[620px] sm:w-[520px] lg:h-[680px] lg:w-[520px] lg:translate-x-2 lg:translate-y-10">
             <Image
               src="/dealphone-v2.png"
               alt="Chewsavvy app on phone"
