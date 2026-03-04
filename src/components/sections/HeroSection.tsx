@@ -73,7 +73,7 @@ export function HeroSection() {
               className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[320px] md:hidden"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.20) 35%, rgba(11,11,13,0.55) 65%, rgba(11,11,13,0.85) 85%, rgba(11,11,13,1) 100%)",
+                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0) 55%, rgba(11,11,13,0.25) 70%, rgba(11,11,13,0.65) 85%, rgba(11,11,13,1) 100%)",
               }}
               aria-hidden
             />
