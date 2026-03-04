@@ -30,7 +30,7 @@ export function HeroSection() {
             className="pointer-events-none absolute left-[38%] top-[58%] -z-20 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(97,172,62,0.08)] blur-[82px] sm:h-[210px] sm:w-[210px] lg:h-[240px] lg:w-[240px]"
             aria-hidden
           />
-          <div className="relative">
+          <div className="relative isolate overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-[72%] before:bg-[linear-gradient(to_top,rgba(11,11,13,1)_0%,rgba(11,11,13,0.9)_30%,rgba(11,11,13,0.65)_55%,rgba(11,11,13,0.25)_78%,rgba(11,11,13,0)_100%)] before:content-[''] md:isolation-auto md:before:content-none">
             <div
               className="pointer-events-none absolute left-[44%] top-[46%] -z-10 h-[520px] w-[340px] -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] rounded-[32px] border-[18px] border-white bg-transparent shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:h-[600px] sm:w-[390px] lg:left-[42%] lg:top-[44%] lg:h-[620px] lg:w-[400px]"
               aria-hidden
@@ -43,7 +43,26 @@ export function HeroSection() {
               sizes="(max-width: 640px) 92vw, (max-width: 1024px) 72vw, 52vw"
               unoptimized
               draggable={false}
-              className="pointer-events-none select-none relative z-10 mx-auto block w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
+              className="pointer-events-none select-none relative z-10 mx-auto block w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] md:hidden sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
+              style={{
+                WebkitMaskImage: "linear-gradient(to top, transparent 0%, transparent 34%, black 70%, black 100%)",
+                maskImage: "linear-gradient(to top, transparent 0%, transparent 34%, black 70%, black 100%)",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskSize: "100% 100%",
+                maskSize: "100% 100%",
+              }}
+              priority
+            />
+            <Image
+              src="/csphone.png"
+              alt="Chewsavvy app preview on phone"
+              width={4688}
+              height={4688}
+              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 72vw, 52vw"
+              unoptimized
+              draggable={false}
+              className="pointer-events-none select-none relative z-10 mx-auto hidden w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] md:block sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
               priority
             />
             <div
@@ -52,10 +71,6 @@ export function HeroSection() {
             />
             <div
               className="pointer-events-none absolute inset-x-0 bottom-[-60px] h-[340px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/90 to-transparent"
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[240px] md:hidden [background:linear-gradient(to_bottom,rgba(11,11,13,0)_0%,rgba(11,11,13,0.25)_45%,rgba(11,11,13,0.65)_75%,rgba(11,11,13,1)_100%)]"
               aria-hidden
             />
             <div
