@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-x-hidden overflow-y-visible bg-[#0B0B0D] pb-12 pt-4 sm:pb-14 sm:pt-6 lg:pb-16 lg:pt-7">
+    <section className="relative isolate overflow-x-hidden overflow-y-visible bg-[#0B0B0D] pb-12 pt-4 md:isolation-auto sm:pb-14 sm:pt-6 lg:pb-16 lg:pt-7">
       <div
         className="pointer-events-none absolute left-[30%] top-[56%] -z-20 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.07] blur-[96px] sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]"
         style={{ background: "radial-gradient(circle, rgba(97,172,62,0.22) 0%, rgba(11,11,13,0) 72%)" }}
@@ -32,7 +32,7 @@ export function HeroSection() {
           />
           <div className="relative isolate overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-[72%] before:bg-[linear-gradient(to_top,rgba(11,11,13,1)_0%,rgba(11,11,13,0.9)_30%,rgba(11,11,13,0.65)_55%,rgba(11,11,13,0.25)_78%,rgba(11,11,13,0)_100%)] before:content-[''] md:isolation-auto md:before:content-none">
             <div
-              className="pointer-events-none absolute left-[44%] top-[46%] -z-10 h-[520px] w-[340px] -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] rounded-[32px] border-[18px] border-white bg-transparent shadow-[0_30px_80px_rgba(0,0,0,0.55)] sm:h-[600px] sm:w-[390px] lg:left-[42%] lg:top-[44%] lg:h-[620px] lg:w-[400px]"
+              className="pointer-events-none absolute left-[44%] top-[46%] -z-10 hidden h-[520px] w-[340px] -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] rounded-[32px] border-[18px] border-white bg-transparent shadow-[0_30px_80px_rgba(0,0,0,0.55)] md:block lg:left-[42%] lg:top-[44%] lg:h-[620px] lg:w-[400px]"
               aria-hidden
             />
             <Image
@@ -66,11 +66,15 @@ export function HeroSection() {
               priority
             />
             <div
-              className="pointer-events-none absolute inset-x-0 top-[-20px] z-20 h-[220px] bg-gradient-to-b from-[#0B0B0D]/85 via-[#0B0B0D]/35 to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-[-20px] z-20 hidden h-[220px] bg-gradient-to-b from-[#0B0B0D]/85 via-[#0B0B0D]/35 to-transparent md:block"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-[-60px] h-[340px] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/90 to-transparent"
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[320px] md:hidden"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.20) 35%, rgba(11,11,13,0.55) 65%, rgba(11,11,13,0.85) 85%, rgba(11,11,13,1) 100%)",
+              }}
               aria-hidden
             />
             <div
@@ -80,8 +84,8 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative z-20 w-full">
-          <div className="relative z-20 ml-auto w-full max-w-[560px] text-right lg:pr-0">
+        <div className="relative z-30 w-full">
+          <div className="relative z-30 ml-auto w-full max-w-[560px] text-right lg:pr-0">
             <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
               <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
                 Your seat at the
