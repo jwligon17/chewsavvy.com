@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative isolate overflow-x-hidden overflow-y-visible bg-[#0B0B0D] pb-12 pt-4 md:isolation-auto sm:pb-14 sm:pt-6 lg:pb-16 lg:pt-7">
+    <section className="relative isolate overflow-visible bg-[#0B0B0D] pb-12 pt-4 md:isolation-auto md:overflow-x-hidden sm:pb-14 sm:pt-6 lg:pb-16 lg:pt-7">
       <div
         className="pointer-events-none absolute left-[30%] top-[56%] -z-20 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.07] blur-[96px] sm:h-[320px] sm:w-[320px] lg:h-[340px] lg:w-[340px]"
         style={{ background: "radial-gradient(circle, rgba(97,172,62,0.22) 0%, rgba(11,11,13,0) 72%)" }}
@@ -57,6 +57,14 @@ export function HeroSection() {
                 }}
                 priority
               />
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[220px] md:hidden"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.88) 18%, rgba(11,11,13,0.55) 42%, rgba(11,11,13,0.22) 68%, rgba(11,11,13,0.08) 84%, rgba(11,11,13,0) 100%)",
+                }}
+                aria-hidden
+              />
             </div>
             <Image
               src="/csphone.png"
@@ -81,7 +89,7 @@ export function HeroSection() {
         </div>
 
         <div className="relative z-40 w-full">
-          <div className="relative z-40 ml-auto w-full max-w-[560px] text-right lg:pr-0">
+          <div className="relative z-30 -mt-16 ml-auto w-full max-w-[560px] text-right md:mt-0 lg:pr-0">
             <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
               <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
                 Your seat at the
