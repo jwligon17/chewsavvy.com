@@ -30,14 +30,7 @@ export function HeroSection() {
             className="pointer-events-none absolute left-[38%] top-[58%] -z-20 h-[180px] w-[180px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[rgba(97,172,62,0.08)] blur-[82px] sm:h-[210px] sm:w-[210px] lg:h-[240px] lg:w-[240px]"
             aria-hidden
           />
-          <div
-            className="relative isolate overflow-hidden before:pointer-events-none before:absolute before:inset-x-0 before:bottom-0 before:z-0 before:h-[72%] before:bg-[linear-gradient(to_top,rgba(11,11,13,1)_0%,rgba(11,11,13,0.9)_30%,rgba(11,11,13,0.65)_55%,rgba(11,11,13,0.25)_78%,rgba(11,11,13,0)_100%)] before:content-[''] md:isolation-auto md:[-webkit-mask-image:none] md:[mask-image:none] md:before:content-none"
-            style={{
-              WebkitMaskImage:
-                "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-              maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)",
-            }}
-          >
+          <div className="relative isolate overflow-hidden md:isolation-auto">
             <div
               className="pointer-events-none absolute left-[44%] top-[46%] -z-10 hidden h-[520px] w-[340px] -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] rounded-[32px] border-[18px] border-white bg-transparent shadow-[0_30px_80px_rgba(0,0,0,0.55)] md:block lg:left-[42%] lg:top-[44%] lg:h-[620px] lg:w-[400px]"
               aria-hidden
@@ -54,10 +47,10 @@ export function HeroSection() {
               priority
             />
             <div
-              className="pointer-events-none absolute left-0 right-0 bottom-0 top-[68%] z-20 md:hidden"
+              className="pointer-events-none absolute left-0 right-0 top-[58%] h-40 z-30 md:hidden"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.35) 45%, rgba(11,11,13,0.75) 75%, rgba(11,11,13,1) 100%)",
+                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.35) 35%, rgba(11,11,13,0.85) 85%, rgba(11,11,13,1) 100%)",
               }}
               aria-hidden
             />
@@ -83,8 +76,8 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="relative z-30 w-full">
-          <div className="relative z-30 ml-auto w-full max-w-[560px] text-right lg:pr-0">
+        <div className="relative z-40 w-full">
+          <div className="relative z-40 ml-auto w-full max-w-[560px] text-right lg:pr-0">
             <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
               <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
                 Your seat at the
