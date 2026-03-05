@@ -45,16 +45,17 @@ export function HeroSection() {
                 unoptimized
                 draggable={false}
                 className="pointer-events-none select-none relative z-10 mx-auto block w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] md:hidden sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
-                priority
-              />
-              <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-[360px] md:hidden"
                 style={{
-                  background:
-                    "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.92) 12%, rgba(11,11,13,0.70) 30%, rgba(11,11,13,0.42) 50%, rgba(11,11,13,0.18) 70%, rgba(11,11,13,0) 100%)",
-                  transform: "translateZ(0)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 62%, rgba(0,0,0,0.94) 72%, rgba(0,0,0,0.72) 82%, rgba(0,0,0,0.35) 92%, rgba(0,0,0,0) 100%)",
+                  maskImage:
+                    "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 62%, rgba(0,0,0,0.94) 72%, rgba(0,0,0,0.72) 82%, rgba(0,0,0,0.35) 92%, rgba(0,0,0,0) 100%)",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskSize: "100% 100%",
+                  maskSize: "100% 100%",
                 }}
-                aria-hidden
+                priority
               />
             </div>
             <Image
