@@ -61,7 +61,7 @@ export function HeroSection() {
                 className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[220px] md:hidden"
                 style={{
                   background:
-                    "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.88) 18%, rgba(11,11,13,0.55) 42%, rgba(11,11,13,0.22) 68%, rgba(11,11,13,0.08) 84%, rgba(11,11,13,0) 100%)",
+                    "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.96) 12%, rgba(11,11,13,0.86) 28%, rgba(11,11,13,0.62) 48%, rgba(11,11,13,0.34) 68%, rgba(11,11,13,0.14) 82%, rgba(11,11,13,0) 100%)",
                 }}
                 aria-hidden
               />
@@ -89,7 +89,7 @@ export function HeroSection() {
         </div>
 
         <div className="relative z-40 w-full">
-          <div className="relative z-30 -mt-16 ml-auto w-full max-w-[560px] text-right md:mt-0 lg:pr-0">
+          <div className="relative z-40 -mt-24 ml-auto w-full max-w-[560px] text-right md:mt-0 lg:pr-0">
             <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
               <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
                 Your seat at the
