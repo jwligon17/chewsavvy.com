@@ -47,10 +47,12 @@ export function HeroSection() {
               priority
             />
             <div
-              className="pointer-events-none absolute left-0 right-0 top-[58%] h-40 z-30 md:hidden"
+              className="pointer-events-none absolute left-0 right-0 top-[52%] z-30 h-[260px] md:hidden"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.35) 35%, rgba(11,11,13,0.85) 85%, rgba(11,11,13,1) 100%)",
+                  "linear-gradient(to bottom, rgba(11,11,13,0) 0%, rgba(11,11,13,0.08) 20%, rgba(11,11,13,0.22) 40%, rgba(11,11,13,0.45) 60%, rgba(11,11,13,0.72) 80%, rgba(11,11,13,1) 100%)",
+                filter: "blur(10px)",
+                transform: "translateZ(0)",
               }}
               aria-hidden
             />
