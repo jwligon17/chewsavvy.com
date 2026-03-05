@@ -51,9 +51,11 @@ export default function MadeForCustomersPage() {
                 </span>
               </span>
               <span className="md:hidden">
-                The deal app designed around
-                <br className="block md:hidden" />
-                better food, <span className="bg-gradient-to-r from-[#2E5BFF] to-[#E7CA7D] bg-clip-text text-transparent">and you.</span>
+                The deal app designed
+                <br />
+                around better
+                <br />
+                <span>food, </span><span className="bg-gradient-to-r from-[#2E5BFF] to-[#E7CA7D] bg-clip-text text-transparent">and you</span>
               </span>
             </h1>
 
