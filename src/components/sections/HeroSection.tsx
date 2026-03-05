@@ -35,26 +35,28 @@ export function HeroSection() {
               className="pointer-events-none absolute left-[44%] top-[46%] -z-10 hidden h-[520px] w-[340px] -translate-x-1/2 -translate-y-1/2 rotate-[-20deg] rounded-[32px] border-[18px] border-white bg-transparent shadow-[0_30px_80px_rgba(0,0,0,0.55)] md:block lg:left-[42%] lg:top-[44%] lg:h-[620px] lg:w-[400px]"
               aria-hidden
             />
-            <Image
-              src="/csphone.png"
-              alt="Chewsavvy app preview on phone"
-              width={4688}
-              height={4688}
-              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 72vw, 52vw"
-              unoptimized
-              draggable={false}
-              className="pointer-events-none select-none relative z-10 mx-auto block w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] md:hidden sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
-              priority
-            />
-            <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-[360px] md:hidden"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.92) 12%, rgba(11,11,13,0.70) 30%, rgba(11,11,13,0.42) 50%, rgba(11,11,13,0.18) 70%, rgba(11,11,13,0) 100%)",
-                transform: "translateZ(0)",
-              }}
-              aria-hidden
-            />
+            <div className="relative mx-auto w-[520px] max-w-full md:hidden">
+              <Image
+                src="/csphone.png"
+                alt="Chewsavvy app preview on phone"
+                width={4688}
+                height={4688}
+                sizes="(max-width: 640px) 92vw, (max-width: 1024px) 72vw, 52vw"
+                unoptimized
+                draggable={false}
+                className="pointer-events-none select-none relative z-10 mx-auto block w-[520px] max-w-full translate-x-0 translate-y-0 rotate-0 object-contain drop-shadow-[0_38px_62px_rgba(0,0,0,0.48)] md:hidden sm:w-[560px] sm:translate-x-0 sm:translate-y-0 lg:w-[540px] lg:translate-x-0 lg:translate-y-2"
+                priority
+              />
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-[360px] md:hidden"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.92) 12%, rgba(11,11,13,0.70) 30%, rgba(11,11,13,0.42) 50%, rgba(11,11,13,0.18) 70%, rgba(11,11,13,0) 100%)",
+                  transform: "translateZ(0)",
+                }}
+                aria-hidden
+              />
+            </div>
             <Image
               src="/csphone.png"
               alt="Chewsavvy app preview on phone"
