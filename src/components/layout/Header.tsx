@@ -297,7 +297,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
           </button>
         </div>
 
-        <div className="h-px w-full bg-white/10" />
+        <div className="hidden h-px w-full bg-white/10 lg:block" />
 
         {isMadeForOpen ? (
           <div
@@ -429,7 +429,7 @@ export function Header({ content = chewsavvyContent }: HeaderProps) {
   return (
     <header
       ref={wrapperRef}
-      className="sticky top-0 z-50 border-b border-[#E6E8EF] bg-white"
+      className="sticky top-0 z-50 lg:border-b lg:border-[#E6E8EF] bg-white"
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:grid lg:grid-cols-[auto_1fr_auto] lg:gap-4 lg:px-8">
         <Link
