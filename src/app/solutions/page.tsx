@@ -16,7 +16,7 @@ export default function SolutionsPage() {
 
   return (
     <>
-      <section className="border-t border-[var(--cs-border)] bg-[var(--cs-surface)] py-16" id="by-organization">
+      <section className="bg-[var(--cs-surface)] py-16 md:border-t md:border-[var(--cs-border)]" id="by-organization">
         <Container>
           <SectionHeading
             eyebrow={solutionsPage.byOrganization.eyebrow}
