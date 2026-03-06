@@ -21,8 +21,16 @@ export function MadeForSection() {
             className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.58)_42%,rgba(0,0,0,0.68)_100%)]"
             aria-hidden
           />
+          <div
+            className="pointer-events-none absolute inset-y-0 left-0 w-[72%] md:hidden z-10"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(11,11,13,0.82) 0%, rgba(11,11,13,0.62) 28%, rgba(11,11,13,0.34) 52%, rgba(11,11,13,0.12) 72%, rgba(11,11,13,0) 100%)",
+            }}
+            aria-hidden
+          />
 
-          <div className="relative z-10 max-w-2xl px-6 py-10">
+          <div className="relative z-20 max-w-2xl px-6 py-10">
             <h2 className="text-3xl font-light leading-[1.08] tracking-tight text-white">
               Hey Restaurants,
               <br />
