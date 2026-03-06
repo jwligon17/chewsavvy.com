@@ -23,10 +23,19 @@ export default function FeaturesPage() {
                 className="object-contain drop-shadow-[0_34px_44px_rgba(0,0,0,0.62)]"
                 sizes="(min-width: 1024px) 1100px, (min-width: 640px) 900px, 760px"
               />
-              {/* Strong fade into background (bottom) */}
+              {/* Mobile-only fade: taller and softer for a more natural blend */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[62%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent md:z-20"
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-[84%] md:hidden"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(11,11,13,1) 0%, rgba(11,11,13,0.94) 14%, rgba(11,11,13,0.78) 32%, rgba(11,11,13,0.52) 52%, rgba(11,11,13,0.28) 70%, rgba(11,11,13,0.12) 86%, rgba(11,11,13,0) 100%)",
+                }}
+              />
+              {/* Desktop fade unchanged */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden h-[62%] bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/95 to-transparent md:block"
               />
             </div>
           </div>
