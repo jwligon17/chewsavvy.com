@@ -30,14 +30,14 @@ export function MadeForSection() {
             aria-hidden
           />
 
-          <div className="relative z-20 max-w-2xl px-6 py-10">
-            <h2 className="text-3xl font-light leading-[1.08] tracking-tight text-white">
+          <div className="relative z-20 max-w-2xl px-6 py-10 text-center md:text-left">
+            <h2 className="text-3xl font-light leading-[1.08] tracking-tight text-white text-center md:text-left">
               Hey Restaurants,
               <br />
               You deserve better.
             </h2>
 
-            <p className="mt-5 text-[0.97rem] leading-relaxed text-white/90">
+            <p className="mt-5 text-[0.97rem] leading-relaxed text-white/90 text-center md:text-left">
               You shouldn&apos;t be paying just for
               <br />
               potential patrons to see a deal, much
@@ -52,7 +52,7 @@ export function MadeForSection() {
               be charged. <strong>And you never will.</strong>
             </p>
 
-            <div className="mt-7">
+            <div className="mt-7 flex justify-center md:justify-start">
               <Link
                 href={vendorHref}
                 className="inline-flex min-h-[44px] items-center rounded-[10px] border border-[#E7CA7D] bg-transparent px-5 text-sm font-medium text-white !text-white visited:text-white transition-colors hover:bg-[#E7CA7D]/10 hover:text-white focus:text-white focus-visible:text-white active:text-white"
