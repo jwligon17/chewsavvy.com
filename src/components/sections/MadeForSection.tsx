@@ -30,7 +30,7 @@ export function MadeForSection() {
             aria-hidden
           />
 
-          <div className="relative z-20 max-w-2xl px-6 py-10 text-center md:text-left">
+          <div className="absolute inset-0 z-20 flex flex-col justify-center md:justify-start max-w-2xl px-6 py-10 text-center md:text-left">
             <h2 className="text-3xl font-light leading-[1.08] tracking-tight text-white text-center md:text-left">
               Hey Restaurants,
               <br />
