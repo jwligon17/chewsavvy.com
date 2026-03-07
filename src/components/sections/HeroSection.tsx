@@ -89,38 +89,65 @@ export function HeroSection() {
         </div>
 
         <div className="relative z-40 w-full">
-          <div className="relative z-40 -mt-24 ml-auto w-full max-w-[560px] text-right md:mt-0 lg:pr-0">
-            <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
+          <div className="md:hidden relative z-40 mx-auto w-full max-w-[360px] text-center">
+            <h1 className="overflow-visible pb-3 text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
               <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
-                Your seat at the
-              </span>
-              <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
-                table is waiting.
-              </span>
-              <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
-                Stay exclusive.
+                Your seat at the table is waiting.
               </span>
             </h1>
 
-            <p className="ml-auto mt-6 text-right text-[1.05rem] leading-relaxed text-white/80 sm:text-[1.1rem]">
+            <p className="mt-6 text-[1.05rem] leading-relaxed text-white/80 sm:text-[1.1rem]">
               The best dining experiences are reserved for those who know where to look.
             </p>
 
-            <p className="ml-auto mt-6 text-right text-[0.95rem] leading-relaxed text-white/55 sm:text-[1rem]">
-              Chewsavvy curates the exceptional deals that others miss, separating the diamond from the rough. Using
-              anything else isn&apos;t just a choice&mdash;it&apos;s a disservice to your taste and your time.
-            </p>
-            <p className="ml-auto mt-6 text-right text-base font-bold text-white sm:text-[1.02rem]">
+            <p className="mt-6 text-base font-bold text-white sm:text-[1.02rem]">
               Join those who refuse to settle.
             </p>
 
-            <div className="mt-6 flex justify-end sm:mt-6">
+            <div className="mt-6 flex justify-center sm:mt-6">
               <Link
                 href="/coming-soon"
                 className="inline-flex min-h-[48px] items-center rounded-xl bg-white px-7 py-3 text-[0.95rem] font-semibold text-[#0B0B0D] shadow-[0_10px_24px_rgba(0,0,0,0.35)] transition-all duration-200 hover:bg-white/95"
               >
                 Download Our App
               </Link>
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            <div className="relative z-40 -mt-24 ml-auto w-full max-w-[560px] text-right md:mt-0 lg:pr-0">
+              <h1 className="ml-auto overflow-visible pb-3 text-right text-[clamp(2.2rem,4.2vw,3.6rem)] font-medium leading-[1.18] tracking-tight">
+                <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
+                  Your seat at the
+                </span>
+                <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
+                  table is waiting.
+                </span>
+                <span className="block pb-[0.08em] bg-gradient-to-r from-[#74C84A] to-[#E3CB87] bg-clip-text text-transparent">
+                  Stay exclusive.
+                </span>
+              </h1>
+
+              <p className="ml-auto mt-6 text-right text-[1.05rem] leading-relaxed text-white/80 sm:text-[1.1rem]">
+                The best dining experiences are reserved for those who know where to look.
+              </p>
+
+              <p className="ml-auto mt-6 text-right text-[0.95rem] leading-relaxed text-white/55 sm:text-[1rem]">
+                Chewsavvy curates the exceptional deals that others miss, separating the diamond from the rough. Using
+                anything else isn&apos;t just a choice&mdash;it&apos;s a disservice to your taste and your time.
+              </p>
+              <p className="ml-auto mt-6 text-right text-base font-bold text-white sm:text-[1.02rem]">
+                Join those who refuse to settle.
+              </p>
+
+              <div className="mt-6 flex justify-end sm:mt-6">
+                <Link
+                  href="/coming-soon"
+                  className="inline-flex min-h-[48px] items-center rounded-xl bg-white px-7 py-3 text-[0.95rem] font-semibold text-[#0B0B0D] shadow-[0_10px_24px_rgba(0,0,0,0.35)] transition-all duration-200 hover:bg-white/95"
+                >
+                  Download Our App
+                </Link>
+              </div>
             </div>
           </div>
         </div>
