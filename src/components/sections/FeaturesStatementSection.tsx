@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { VENDOR_SIGNUP_URL } from "@/lib/site";
+
 export function FeaturesStatementSection() {
   return (
     <section id="features" className="bg-[#0B0B0D]">
@@ -22,12 +24,12 @@ export function FeaturesStatementSection() {
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link
-            href="/coming-soon"
+          <a
+            href={VENDOR_SIGNUP_URL}
             className="inline-flex min-h-[44px] items-center justify-center rounded-[10px] border border-[#E7CA7D] bg-transparent px-5 text-sm font-medium text-white !text-white visited:text-white hover:text-white transition-colors hover:bg-[#E7CA7D]/10"
           >
             Vendor Portal
-          </Link>
+          </a>
           <Link
             href="/coming-soon"
             className="inline-flex min-h-[44px] items-center justify-center rounded-[10px] bg-[#E7CA7D] px-5 text-sm font-medium text-[#0B0B0D] transition-colors hover:bg-[#f2d894]"

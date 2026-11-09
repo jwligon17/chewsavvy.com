@@ -4,6 +4,7 @@ import { ContactPageForm } from "./ContactPageForm";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact Chewsavvy for vendor program and onboarding information.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

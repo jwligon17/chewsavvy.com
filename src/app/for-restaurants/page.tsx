@@ -1,0 +1,10 @@
+import type { Metadata } from "next";
+import { SeoPage } from "@/components/SeoPage";
+
+export const metadata: Metadata = { title: "Free Restaurant Listing & Vendor Participation", description: "Create a free restaurant listing and manage Chewsavvy participation through the secure Vendor Portal.", alternates: { canonical: "/for-restaurants" } };
+export default function Page() { return <SeoPage vendor eyebrow="For restaurants" title="Make your restaurant easier to discover" description="Create a free restaurant listing and manage participation through Chewsavvy’s secure Vendor Portal." path="/for-restaurants" sections={[
+  { heading: "Start with a free restaurant listing", paragraphs: ["The List Your Restaurant action takes you directly to the verified Chewsavvy Vendor Portal signup. There, restaurant operators can begin the existing registration and verification process.", "Listing and participation do not guarantee traffic, redemptions, revenue, placement, or a particular customer outcome."] },
+  { heading: "A clear participation path", paragraphs: ["Chewsavvy keeps restaurant access separate from the public marketing site."], bullets: ["Open the secure Vendor Portal signup", "Create or access the appropriate vendor account", "Complete the portal’s registration and verification steps", "Manage eligible restaurant and deal information through the portal"] },
+  { heading: "The Vendor Portal remains the source of truth", paragraphs: ["Restaurant authentication, registration, verification, and deal-management functionality live in the separate Vendor Portal. This website does not replace or modify those workflows."] },
+  { heading: "Reach diners during the decision", paragraphs: ["Chewsavvy is designed to help people discover participating restaurants while they are deciding where to eat. Restaurant availability and deal terms should remain current, clear, and accurate."] },
+]} related={[{label:"Vendor Portal",href:"https://vendors.chewsavvy.com/vendor/signup"},{label:"Restaurant deals",href:"/restaurant-deals"},{label:"Abilene restaurant deals",href:"/locations/abilene"}]} />; }

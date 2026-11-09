@@ -1,8 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
+
+import { VENDOR_SIGNUP_URL } from "@/lib/site";
 
 export function MadeForSection() {
-  const vendorHref = "/coming-soon";
+  const vendorHref = VENDOR_SIGNUP_URL;
 
   return (
     <section id="made-for" className="bg-[#0B0B0D] px-4 pb-10 sm:px-6 sm:pb-12 lg:px-8 lg:pb-16">
@@ -53,12 +54,12 @@ export function MadeForSection() {
             </p>
 
             <div className="mt-7 flex justify-center md:justify-start">
-              <Link
+              <a
                 href={vendorHref}
                 className="inline-flex min-h-[44px] items-center rounded-[10px] border border-[#E7CA7D] bg-transparent px-5 text-sm font-medium text-white !text-white visited:text-white transition-colors hover:bg-[#E7CA7D]/10 hover:text-white focus:text-white focus-visible:text-white active:text-white"
               >
                 Vendor Portal
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -95,12 +96,12 @@ export function MadeForSection() {
             </p>
 
             <div className="mt-7">
-              <Link
+              <a
                 href={vendorHref}
                 className="inline-flex min-h-[44px] items-center rounded-[10px] border border-[#E7CA7D] bg-transparent px-5 text-sm font-medium text-white !text-white visited:text-white transition-colors hover:bg-[#E7CA7D]/10 hover:text-white focus:text-white focus-visible:text-white active:text-white"
               >
                 Vendor Portal
-              </Link>
+              </a>
             </div>
           </div>
         </div>

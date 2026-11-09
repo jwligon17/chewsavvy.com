@@ -1,0 +1,9 @@
+import type { Metadata } from "next";
+import { SeoPage } from "@/components/SeoPage";
+
+export const metadata: Metadata = { title: "Food Deals Near Me", description: "Learn how Chewsavvy helps you look for nearby restaurant deals in supported locations.", alternates: { canonical: "/food-deals-near-me" } };
+export default function Page() { return <SeoPage eyebrow="Nearby dining" title="Food deals near me" description="Turn a nearby-food search into a useful shortlist of participating restaurants and current deal details." path="/food-deals-near-me" sections={[
+  { heading: "Start with a supported location", paragraphs: ["A nearby deal is only helpful when its location and terms match your plans. Chewsavvy organizes discovery around supported markets so you can focus on relevant restaurant options.", "Location services and map views may help you orient your search, but availability still depends on restaurant participation and the current terms of each deal."] },
+  { heading: "Narrow the decision", paragraphs: ["Before choosing a nearby restaurant deal, consider the time of day, dining format, distance, and redemption window."], bullets: ["Check whether the deal applies at the location you plan to visit", "Confirm the valid meal period and date", "Review dine-in or online-use requirements", "Allow enough time to complete the listed redemption steps"] },
+  { heading: "When no deal is shown", paragraphs: ["Chewsavvy will not invent an offer for a restaurant or market. If a current eligible deal is not available, explore another meal period, location, or participating restaurant."] },
+]} related={[{label:"Restaurant deals",href:"/restaurant-deals"},{label:"Locations",href:"/locations"},{label:"Restaurant deals in Abilene",href:"/locations/abilene"},{label:"How Chewsavvy works",href:"/how-it-works"}]} />; }

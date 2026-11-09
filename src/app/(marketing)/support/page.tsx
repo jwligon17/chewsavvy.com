@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Support",
   description: "Support and troubleshooting for Chewsavvy.",
+  alternates: { canonical: "/support" },
 };
 
 export default function SupportPage() {

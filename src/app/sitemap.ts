@@ -1,22 +1,18 @@
 import type { MetadataRoute } from "next";
 
-import { chewsavvyContent } from "@/content/chewsavvy";
+import { SITE_URL } from "@/lib/site";
 
-const siteUrl = "https://chewsavvy.com";
+const routes = [
+  "", "/about", "/restaurant-deals", "/food-deals-near-me", "/lunch-specials",
+  "/dinner-specials", "/restaurant-discounts", "/locations", "/locations/abilene",
+  "/for-restaurants", "/how-it-works", "/blog", "/coming-soon", "/support",
+  "/contact", "/privacy", "/terms", "/security-privacy",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/platform", "/solutions", "/resources", "/company/about", "/contact"];
-  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
-    url: `${siteUrl}${path}`,
-    changeFrequency: path === "" ? "weekly" : "monthly",
-    priority: path === "" ? 1 : 0.7,
+  return routes.map((path) => ({
+    url: `${SITE_URL}${path}`,
+    changeFrequency: path === "" || path === "/restaurant-deals" ? "weekly" : "monthly",
+    priority: path === "" ? 1 : path === "/restaurant-deals" ? 0.9 : 0.7,
   }));
-
-  const resourceEntries: MetadataRoute.Sitemap = chewsavvyContent.resourcesPage.items.map((item) => ({
-    url: `${siteUrl}/resources/${item.slug}`,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
-  return [...staticEntries, ...resourceEntries];
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+
+import { VENDOR_SIGNUP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Made for Vendors",
@@ -31,12 +32,12 @@ export default function MadeForVendorsPage() {
           </p>
 
           <div className="mt-10">
-            <Link
-              href="/coming-soon"
+            <a
+              href={VENDOR_SIGNUP_URL}
               className="inline-flex min-h-[48px] items-center rounded-full border border-[#E7CA7D] px-8 text-sm font-medium tracking-wide !text-white transition-colors duration-200 hover:!text-white hover:bg-[#E7CA7D]/10"
             >
               Vendor Portal
-            </Link>
+            </a>
           </div>
         </div>
 
