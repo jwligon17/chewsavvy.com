@@ -26,17 +26,17 @@ export default function Home() {
         <div className="site-container hero-grid">
           <div className="hero-copy">
             <p className="eyebrow">Local dining, made savvier</p>
-            <h1>Discover more.<br /><span>Spend less.</span></h1>
+            <h1>Taste More.<br /><span>Spend Less.</span></h1>
             <p className="lede">Exclusive restaurant deals, incredible local savings, and more reasons to enjoy the food you love.</p>
             <div className="button-row">
               <Link className="button button-primary" href={APP_HREF}>Get the App</Link>
               <Link className="button button-secondary" href="/restaurant-deals">Explore Restaurant Deals</Link>
             </div>
-            <p className="fine-print">Prelaunch access information is available now. Store download links will be added only when verified.</p>
+            <p className="fine-print">Prelaunch access information is available now. Store download links will be added only when verified. Savings values shown in the preview are illustrative marketing examples, not verified customer results.</p>
           </div>
           <div className="hero-image">
             <Image className="food-photo" src="/food.png" width={1400} height={900} alt="A carefully plated restaurant meal" priority sizes="(max-width: 1040px) 90vw, 48vw" />
-            <Image className="hero-phone" src="/dealfeaturephone.png" width={350} height={700} alt="Chewsavvy mobile app deal screen preview" priority />
+            <div className="app-screen-frame hero-phone"><Image className="app-screen-image" src="/app-savings-example.png" width={851} height={1849} alt="Illustrative Chewsavvy savings screen showing $71.50 lifetime savings and $34.00 monthly savings" priority /></div>
             <p className="hero-note">Find a reason to try somewhere new.</p>
           </div>
         </div>
@@ -55,8 +55,8 @@ export default function Home() {
 
       <section className="section">
         <div className="site-container split">
-          <div className="pattern-panel"><Image src="/mapfeaturephone.png" width={350} height={700} alt="Chewsavvy restaurant map interface preview" /></div>
-          <div className="split-copy"><p className="eyebrow">Restaurant discovery</p><h2>From “what sounds good?” to a plan</h2><p className="lede">See participating restaurants around supported locations, compare what is available, and choose the meal that fits your day.</p><p className="fine-print">Product interface shown for illustration. Restaurant listings, deals, and availability vary by market.</p><div><Link className="button button-secondary" href="/food-deals-near-me">Find food deals near you</Link></div></div>
+          <div className="pattern-panel"><div className="app-screen-frame discovery-phone"><Image className="app-screen-image" src="/app-categories-example.png" width={851} height={1792} alt="Chewsavvy app categories for deals and restaurants" /></div></div>
+          <div className="split-copy"><p className="eyebrow">Restaurant discovery</p><h2>From “what sounds good?” to a plan</h2><p className="lede">See participating restaurants around supported locations, compare what is available, and choose the meal that fits your day.</p><p className="fine-print">Product interface and values are shown as illustrative marketing examples. Restaurant listings, deals, savings, and availability vary by market and are not presented as verified customer results.</p><div><Link className="button button-secondary" href="/food-deals-near-me">Find food deals near you</Link></div></div>
         </div>
       </section>
 

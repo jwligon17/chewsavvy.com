@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# local reference and test artifacts
+/brand-assets/
+/tmp/
+
 # next.js
 /.next/
 /out/
