@@ -29,7 +29,7 @@ export function SeoPage({
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
         { "@type": "ListItem", position: 2, name: title, item: `${SITE_URL}${path}` },
       ] }} />
-      <header className="page-hero"><div className="site-container"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="lede">{description}</p><div className="button-row">{vendor ? <a className="button button-primary" href={VENDOR_SIGNUP_URL}>List Your Restaurant</a> : <Link className="button button-primary" href={APP_HREF}>Get the App</Link>}<Link className="button button-secondary" href={vendor ? "/how-it-works" : "/restaurant-deals"}>{vendor ? "See How Chewsavvy Works" : "Explore Restaurant Deals"}</Link></div></div></header>
+      <header className="page-hero"><div className="site-container"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="lede">{description}</p><div className="button-row">{vendor ? <a className="button button-primary" href={VENDOR_SIGNUP_URL}>List Your Restaurant</a> : <Link className="button button-primary" href={APP_HREF}>Get the App</Link>}{path !== "/restaurant-deals" ? <Link className="button button-secondary" href={vendor ? "/how-it-works" : "/restaurant-deals"}>{vendor ? "See How Chewsavvy Works" : "Explore Restaurant Deals"}</Link> : null}</div></div></header>
       <section className="section"><div className="site-container content-grid">
         <div className="prose">{sections.map((section) => <section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets ? <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul> : null}</section>)}</div>
         <aside>
